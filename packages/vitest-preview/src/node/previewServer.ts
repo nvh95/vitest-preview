@@ -35,21 +35,25 @@ async function createServer() {
       // },
     },
     // Workaround to watch `.vitest-preview`
+    // But it still does not work on Linux
     // Reference: https://github.com/vitejs/vite/issues/8619#issuecomment-1170762244
-    plugins: [
-      {
-        name: 'watch-node-modules',
-        configureServer: (server: ViteDevServer): void => {
-          server.watcher.options = {
-            ...server.watcher.options,
-            ignored: [/node_modules\/(?!\.vitest-preview).*/, '**/.git/**'],
-          };
-        },
-      },
-    ],
-    optimizeDeps: {
-      exclude: ['.vitest-preview'],
-    },
+    // plugins: [
+    //   {
+    //     name: 'watch-node-modules',
+    //     configureServer: (server: ViteDevServer): void => {
+    //       server.watcher.options = {
+    //         ...server.watcher.options,
+    //         ignored: [/node_modules\/(?!\.vitest-preview).*/, '**/.git/**'],
+    //       };
+    //     },
+    //   },
+    // ],
+    // optimizeDeps: {
+    //   exclude: ['.vitest-preview'],
+    // },
+    // TODO: When issue https://github.com/vitejs/vite/issues/8619 closes, we can move .vite-preview into `node_modules`
+    // For now, we workaround by putting it outside node_modules
+    // Other option: Can we use Virtual File System? (like previewjs/ how does it work?)
     appType: 'custom',
   });
 
