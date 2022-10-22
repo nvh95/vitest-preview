@@ -12,7 +12,8 @@
   "scripts": {
     "copy": "mkdir dist && cp src/openChrome.applescript dist/openChrome.applescript",
     "build": "rimraf dist && pnpm run copy && rollup -c",
-    "build:watch": "rimraf dist && pnpm run copy && rollup -c -w"
+    "build:watch": "rimraf dist && pnpm run copy && rollup -c -w",
+    "prepublishOnly": "pnpm run build"
   },
   "keywords": [],
   "author": {

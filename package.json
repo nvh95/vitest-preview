@@ -1,7 +1,8 @@
 {
-  "name": "vitest-preview-monorepo",
+  "name": "@vitest-preview/workspace",
   "version": "0.0.1",
   "description": "",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,6 +13,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@changesets/cli": "^2.25.0",
     "@types/node": "^18.11.3",
     "esbuild": "^0.15.12",
     "prettier": "^2.7.1",

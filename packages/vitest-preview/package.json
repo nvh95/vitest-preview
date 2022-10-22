@@ -1,6 +1,6 @@
 {
   "name": "vitest-preview",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.1-alpha.1",
   "description": "",
   "type": "module",
   "main": "dist/index.js",
@@ -17,8 +17,8 @@
     "build": "rimraf dist && pnpm copy && rollup -c",
     "build:watch": "rimraf dist && pnpm copy && rollup -c -w",
     "prepublishOnly": "pnpm run build",
-    "publish:alpha": "npm publish --tag alpha",
-    "publish:latest": "npm publish"
+    "publish:alpha": "pnpm publish --tag alpha",
+    "publish:latest": "pnpm publish"
   },
   "keywords": [],
   "author": {
