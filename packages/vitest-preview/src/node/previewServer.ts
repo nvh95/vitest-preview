@@ -2,7 +2,7 @@
 import fs from 'fs';
 import path from 'path';
 import express from 'express';
-import { createServer as createViteServer } from 'vite';
+import { createServer as createViteServer, ViteDevServer } from 'vite';
 import { fileURLToPath } from 'url';
 
 import { openBrowser } from '@vitest-preview/dev-utils';
@@ -15,27 +15,38 @@ const port = process.env.PORT || 5006;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-if (fs.existsSync(CACHE_FOLDER)) {
-  // Try catch since `rmSync` is available in node >= 14.14.0
-  try {
-    // Remove old preview
-    fs.rmSync(CACHE_FOLDER, { recursive: true, force: true });
-  } catch (error) {
-    console.error(error);
-  }
-}
+createCacheFolderIfNeeded();
+const emptyHtml = fs.readFileSync(
+  path.resolve(__dirname, 'empty.html'),
+  'utf-8',
+);
+fs.writeFileSync(path.join(CACHE_FOLDER, 'index.html'), emptyHtml);
 
 async function createServer() {
   const app = express();
   const vite = await createViteServer({
     server: {
       middlewareMode: true,
-      watch: {
-        // By default, Vite doesn't watch code under node_modules
-        // Reference: https://vitejs.dev/config/server-options.html#server-watch
-        ignored: ['!**/node_modules/.vitest-preview/**'],
-      },
+      // This does not work on Linux, but work fine on Mac
+      // watch: {
+      // By default, Vite doesn't watch code under node_modules
+      // Reference: https://vitejs.dev/config/server-options.html#server-watch
+      // ignored: ['!**/node_modules/.vitest-preview/**'],
+      // },
     },
+    // Workaround to watch `.vitest-preview`
+    // Reference: https://github.com/vitejs/vite/issues/8619#issuecomment-1170762244
+    plugins: [
+      {
+        name: 'watch-node-modules',
+        configureServer: (server: ViteDevServer): void => {
+          server.watcher.options = {
+            ...server.watcher.options,
+            ignored: [/node_modules\/(?!\.vitest-preview).*/, '**/.git/**'],
+          };
+        },
+      },
+    ],
     optimizeDeps: {
       exclude: ['.vitest-preview'],
     },
@@ -49,16 +60,7 @@ async function createServer() {
 
     try {
       const snapshotHtmlFile = path.join(CACHE_FOLDER, 'index.html');
-      if (!fs.existsSync(snapshotHtmlFile)) {
-        const emptyHtml = fs.readFileSync(
-          path.resolve(__dirname, 'empty.html'),
-          'utf-8',
-        );
-        createCacheFolderIfNeeded();
-        fs.writeFileSync(path.join(CACHE_FOLDER, 'index.html'), emptyHtml);
-      }
       let template = fs.readFileSync(path.resolve(snapshotHtmlFile), 'utf-8');
-
       template = await vite.transformIndexHtml(url, template);
 
       // TODO: We can manipulate the string to modify HTML here. Some actions we can do:
