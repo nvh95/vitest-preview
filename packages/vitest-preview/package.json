@@ -13,8 +13,9 @@
     "vitest-preview": "./dist/previewServer.js"
   },
   "scripts": {
-    "build": "rimraf dist && rollup -c",
-    "build:watch": "rimraf dist && rollup -c -w"
+    "copy": "mkdir dist && cp src/node/empty.html dist/empty.html",
+    "build": "rimraf dist && pnpm copy && rollup -c",
+    "build:watch": "rimraf dist && pnpm copy && rollup -c -w"
   },
   "keywords": [],
   "author": {

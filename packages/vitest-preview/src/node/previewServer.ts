@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import express from 'express';
 import { createServer as createViteServer } from 'vite';
+import { fileURLToPath } from 'url';
 
 import { openBrowser } from '@vitest-preview/dev-utils';
 
@@ -10,6 +11,8 @@ import { CACHE_FOLDER } from '../constants';
 
 // TODO: Find the available port
 const port = process.env.PORT || 5006;
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 async function createServer() {
   const app = express();
@@ -34,10 +37,16 @@ async function createServer() {
     const url = req.originalUrl;
 
     try {
-      let template = fs.readFileSync(
-        path.resolve(CACHE_FOLDER, 'index.html'),
-        'utf-8',
-      );
+      const snapshotHtmlFile = path.join(CACHE_FOLDER, 'index.html');
+      if (!fs.existsSync(snapshotHtmlFile)) {
+        const emptyHtml = fs.readFileSync(
+          path.resolve(__dirname, 'empty.html'),
+          'utf-8',
+        );
+        res.status(200).set({ 'Content-Type': 'text/html' }).end(emptyHtml);
+        return;
+      }
+      let template = fs.readFileSync(path.resolve(snapshotHtmlFile), 'utf-8');
 
       template = await vite.transformIndexHtml(url, template);
 
