@@ -10,7 +10,7 @@
     "dist"
   ],
   "bin": {
-    "vitest-preview": "./dist/previewServer.js"
+    "vitest-preview": "./dist/previewServer.mjs"
   },
   "scripts": {
     "copy": "mkdir dist && cp src/node/empty.html dist/empty.html",
