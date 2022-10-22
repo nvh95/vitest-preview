@@ -8,11 +8,22 @@ import { fileURLToPath } from 'url';
 import { openBrowser } from '@vitest-preview/dev-utils';
 
 import { CACHE_FOLDER } from '../constants';
+import { createCacheFolderIfNeeded } from '../utils';
 
 // TODO: Find the available port
 const port = process.env.PORT || 5006;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+if (fs.existsSync(CACHE_FOLDER)) {
+  // Try catch since `rmSync` is available in node >= 14.14.0
+  try {
+    // Remove old preview
+    fs.rmSync(CACHE_FOLDER, { recursive: true, force: true });
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 async function createServer() {
   const app = express();
@@ -43,8 +54,8 @@ async function createServer() {
           path.resolve(__dirname, 'empty.html'),
           'utf-8',
         );
-        res.status(200).set({ 'Content-Type': 'text/html' }).end(emptyHtml);
-        return;
+        createCacheFolderIfNeeded();
+        fs.writeFileSync(path.join(CACHE_FOLDER, 'index.html'), emptyHtml);
       }
       let template = fs.readFileSync(path.resolve(snapshotHtmlFile), 'utf-8');
 
