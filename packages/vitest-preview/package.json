@@ -15,7 +15,10 @@
   "scripts": {
     "copy": "mkdir dist && cp src/node/empty.html dist/empty.html",
     "build": "rimraf dist && pnpm copy && rollup -c",
-    "build:watch": "rimraf dist && pnpm copy && rollup -c -w"
+    "build:watch": "rimraf dist && pnpm copy && rollup -c -w",
+    "prepublishOnly": "pnpm run build",
+    "publish:alpha": "npm publish --tag alpha",
+    "publish:latest": "npm publish"
   },
   "keywords": [],
   "author": {
