@@ -16,12 +16,6 @@ importers:
       rimraf: 3.0.2
       typescript: 4.8.4
 
-  apps/dev:
-    specifiers:
-      vitest-preview: workspace:*
-    dependencies:
-      vitest-preview: link:../../packages/vitest-preview
-
   apps/react-testing-lib:
     specifiers:
       '@testing-library/jest-dom': ^5.16.4
@@ -57,6 +51,25 @@ importers:
       vitest: 0.24.3_i7ukxxwfoxepyk4smtl6oue4oi
       vitest-preview: link:../../packages/vitest-preview
 
+  packages/dev-utils:
+    specifiers:
+      '@rollup/plugin-commonjs': ^23.0.2
+      '@rollup/plugin-json': ^5.0.1
+      '@rollup/plugin-node-resolve': ^15.0.1
+      open: ^8.4.0
+      rollup: ^3.2.3
+      rollup-plugin-dts: ^5.0.0
+      rollup-plugin-esbuild: ^4.10.1
+    dependencies:
+      open: 8.4.0
+    devDependencies:
+      '@rollup/plugin-commonjs': 23.0.2_rollup@3.2.3
+      '@rollup/plugin-json': 5.0.1_rollup@3.2.3
+      '@rollup/plugin-node-resolve': 15.0.1_rollup@3.2.3
+      rollup: 3.2.3
+      rollup-plugin-dts: 5.0.0_rollup@3.2.3
+      rollup-plugin-esbuild: 4.10.1_rollup@3.2.3
+
   packages/vitest-preview:
     specifiers:
       '@rollup/plugin-commonjs': ^23.0.2
@@ -64,6 +77,7 @@ importers:
       '@rollup/plugin-node-resolve': ^15.0.1
       '@types/express': ^4.17.14
       '@types/node': ^18.11.3
+      '@vitest-preview/dev-utils': workspace:*
       express: ^4.18.2
       rollup: ^3.2.3
       rollup-plugin-dts: ^5.0.0
@@ -72,6 +86,7 @@ importers:
     dependencies:
       '@types/express': 4.17.14
       '@types/node': 18.11.3
+      '@vitest-preview/dev-utils': link:../dev-utils
       express: 4.18.2
       vite: 3.1.8
     devDependencies:
@@ -1102,6 +1117,11 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /define-lazy-prop/2.0.0:
+    resolution: {integrity: sha512-Ds09qNh8yw3khSjiJjiUInaGX9xlqZDY7JVryGxdxV7NPeuqQfplOpQ66yJFZut3jLa5zOwkXw1g9EI2uKh4Og==}
+    engines: {node: '>=8'}
+    dev: false
+
   /delayed-stream/1.0.0:
     resolution: {integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==}
     engines: {node: '>=0.4.0'}
@@ -1664,6 +1684,12 @@ packages:
     dependencies:
       has: 1.0.3
 
+  /is-docker/2.2.1:
+    resolution: {integrity: sha512-F+i2BKsFrH66iaUFc0woD8sLy8getkwTwtOBjvs56Cx4CgJDeKQeqfz8wAYiSb8JOprWhHH5p77PbmYCvvUuXQ==}
+    engines: {node: '>=8'}
+    hasBin: true
+    dev: false
+
   /is-module/1.0.0:
     resolution: {integrity: sha512-51ypPSPCoTEIN9dy5Oy+h4pShgJmPCygKfyRCISBI+JoWT/2oJvK8QPxmwv7b/p239jXrm9M1mlQbyKJ5A152g==}
     dev: true
@@ -1682,6 +1708,13 @@ packages:
     dependencies:
       '@types/estree': 1.0.0
     dev: true
+
+  /is-wsl/2.2.0:
+    resolution: {integrity: sha512-fKzAra0rGJUUBwGBgNkHZuToZcn+TtXHpeCgmkMJMMYx1sQDYaCSyjJBSCa2nH1DGm7s3n1oBnohoVTBaN7Lww==}
+    engines: {node: '>=8'}
+    dependencies:
+      is-docker: 2.2.1
+    dev: false
 
   /jest-diff/29.2.1:
     resolution: {integrity: sha512-gfh/SMNlQmP3MOUgdzxPOd4XETDJifADpT937fN1iUGz+9DgOu2eUPHH25JDkLVcLwwqxv3GzVyK4VBUr9fjfA==}
@@ -1952,6 +1985,15 @@ packages:
     dependencies:
       wrappy: 1.0.2
     dev: true
+
+  /open/8.4.0:
+    resolution: {integrity: sha512-XgFPPM+B28FtCCgSb9I+s9szOC1vZRSwgWsRUA5ylIxRTgKozqjOCrVOqGsYABPYK5qnfqClxZTFBa8PKt2v6Q==}
+    engines: {node: '>=12'}
+    dependencies:
+      define-lazy-prop: 2.0.0
+      is-docker: 2.2.1
+      is-wsl: 2.2.0
+    dev: false
 
   /optionator/0.8.3:
     resolution: {integrity: sha512-+IW9pACdk3XWmmTXG8m3upGUJst5XRGzxMRjXzAuJ1XnIFNvfhjjIuYkDvysnPQ7qzqVzLt78BCruntqRhWQbA==}

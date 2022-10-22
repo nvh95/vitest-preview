@@ -1,14 +1,18 @@
 // https://vitejs.dev/guide/ssr.html#setting-up-the-dev-server
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
 import express from 'express';
 import { createServer as createViteServer } from 'vite';
+
+import { openBrowser } from '@vitest-preview/dev-utils';
+
 import { CACHE_FOLDER } from '../constants';
+
+// TODO: Find the available port
+const port = process.env.PORT || 5006;
 
 async function createServer() {
   const app = express();
-
   const vite = await createViteServer({
     server: {
       middlewareMode: true,
@@ -49,7 +53,10 @@ async function createServer() {
     }
   });
 
-  app.listen(5006);
+  app.listen(port, () => {
+    console.log(`Vitest Preview Server listening on http://localhost:${port}`);
+    openBrowser(`http://localhost:${port}`);
+  });
 }
 
 createServer();
