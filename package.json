@@ -12,6 +12,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@changesets/cli": "^2.25.0",
     "@types/node": "^18.11.3",
     "esbuild": "^0.15.12",
     "prettier": "^2.7.1",
