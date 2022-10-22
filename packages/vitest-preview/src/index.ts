@@ -1,4 +1,4 @@
-import { debug } from "./preview";
+import { debug } from './preview';
 
 export { debug };
 

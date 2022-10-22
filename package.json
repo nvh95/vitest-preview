@@ -4,14 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prettier": "prettier apps packages --check",
+    "prettier:fix": "pnpm run prettier --write"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@types/node": "^18.11.3",
     "esbuild": "^0.15.12",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
     "typescript": "^4.8.4"
   }
 }

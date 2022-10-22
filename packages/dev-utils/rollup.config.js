@@ -8,7 +8,7 @@ import json from '@rollup/plugin-json';
 
 import pkg from './package.json' assert { type: 'json' };
 
-const entries = ['src/index.ts', 'src/node/previewServer.ts'];
+const entries = ['src/index.ts'];
 
 const dtsEntries = ['src/index.ts'];
 
