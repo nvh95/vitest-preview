@@ -99,4 +99,4 @@ yarn vitest-preview
 pnpm vitest-preview
 ```
 
-Then execute your tests that contain `debug()`. You will see the UI of your tests at [http://localhost:5006](http://localhost:5006).
+Then execute your tests that contain `debug()`. You will see the UI of your tests at localhost:5006.
