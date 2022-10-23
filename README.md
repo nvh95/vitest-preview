@@ -1,4 +1,3 @@
-<!-- TODO: Write a GitHub Actions to sync with root readme -->
 <h1 align="center">
 Vitest Preview
 </h1>
@@ -125,6 +124,11 @@ pnpm vitest-preview
 
 Then execute your tests that contain `debug()`. You will see the UI of your tests at [http://localhost:5006](http://localhost:5006).
 
+## Examples
+
+- [react-testing-library](https://github.com/nvh95/vitest-preview/tree/main/examples/react-testing-library)
+- [@vue/test-utils](https://github.com/nvh95/vitest-preview/tree/main/examples/vue-test-utils)
+
 ## Contributing
 
 Please see the contribution guide at [CONTRIBUTING.md](./CONTRIBUTING.md).
@@ -136,3 +140,5 @@ Yes, it is. It's [Jest Preview](https://github.com/nvh95/jest-preview).
 ## Support
 
 If you like the project, please consider supporting it by giving a ⭐️ to encourage the author.
+
+<!-- TODO: Write a GitHub Actions to sync with root readme -->

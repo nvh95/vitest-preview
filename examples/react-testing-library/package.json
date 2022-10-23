@@ -1,5 +1,5 @@
 {
-  "name": "example-testing-lib-react",
+  "name": "@vitest-preview/react-testing-library",
   "private": true,
   "scripts": {
     "build": "tsc && vite build",
