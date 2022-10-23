@@ -39,6 +39,7 @@ export default defineConfig({
       copyright: 'Copyright © 2022-present Hung Nguyen',
     },
   },
+  appearance: 'dark',
 });
 
 function nav() {
