@@ -137,6 +137,12 @@ Please see the contribution guide at [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 Yes, it is. It's [Jest Preview](https://github.com/nvh95/jest-preview).
 
+## License
+
+![This is open source software](https://user-images.githubusercontent.com/8603085/161439058-98faea42-c6e6-46f4-9ce6-218fad5f3b9a.gif)
+
+MIT
+
 ## Support
 
 If you like the project, please consider supporting it by giving a ⭐️ to encourage the author.
