@@ -1,6 +1,6 @@
 {
   "name": "vitest-preview",
-  "version": "0.0.1-alpha.4",
+  "version": "0.0.1",
   "description": "Visual Debugging Experience for Vitest 🧪🖼⚡️",
   "type": "module",
   "main": "dist/index.js",
