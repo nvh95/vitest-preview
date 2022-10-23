@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 // Credit to https://github.com/bpierre/create-react-app/blob/967db643fc9f85e1f8c84fff4708307c5f006e4f/packages/react-dev-utils/openBrowser.js
 import { execSync } from 'child_process';
 import path from 'path';
