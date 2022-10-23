@@ -4,10 +4,12 @@ Vitest Preview
 </h1>
 
 <p align="center">
-Debug your Vitest tests. Effortlessly. 🛠🖼
+Debug your Vitest tests. Effortlessly. 🧪🖼⚡️
 </p>
 
-<!-- TODO: Add GIF -->
+<p align="center">
+  <img align="center" src="https://user-images.githubusercontent.com/8603085/197373376-f6a3fe33-487b-4c35-8085-8e7e6357ce40.gif" alt="Vitest Preview Demo" />
+</p>
 
 <p align="center">
   <a href="https://stackblitz.com/edit/vitest-preview?file=src%2FApp.test.tsx,README.md" title="Try Vitest Preview Now" target="_blank">Try Vitest Preview Online</a>. No downloads needed!

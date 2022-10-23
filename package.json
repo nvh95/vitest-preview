@@ -1,7 +1,7 @@
 {
   "name": "@vitest-preview/workspace",
   "version": "0.0.1",
-  "description": "",
+  "description": "Visual Debugging Experience for Vitest 🧪🖼⚡️",
   "private": true,
   "main": "index.js",
   "scripts": {

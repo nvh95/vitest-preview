@@ -1,7 +1,7 @@
 {
   "name": "vitest-preview",
   "version": "0.0.1-alpha.4",
-  "description": "",
+  "description": "Visual Debugging Experience for Vitest 🧪🖼⚡️",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -20,7 +20,23 @@
     "publish:alpha": "pnpm publish --tag alpha",
     "publish:latest": "pnpm publish"
   },
-  "keywords": [],
+  "keywords": [
+    "testing",
+    "vitest",
+    "frontend",
+    "productivity",
+    "debug",
+    "preview vitest",
+    "vitest browser"
+  ],
+  "homepage": "https://www.vitest-preview.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nvh95/vitest-preview.git"
+  },
+  "bug": {
+    "url": "https://github.com/nvh95/viest-preview/issues"
+  },
   "author": {
     "name": "Hung Viet Nguyen",
     "url": "https://github.com/nvh95"
