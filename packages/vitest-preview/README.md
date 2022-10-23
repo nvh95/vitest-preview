@@ -1,3 +1,7 @@
+<p align="center">
+ <img align="center" alt="Vitest Preview Logo" src="https://user-images.githubusercontent.com/8603085/197406675-dbe5b555-3a71-4c6d-9547-776c18052881.svg" width="120"/>
+</p>
+
 <h1 align="center">
 Vitest Preview
 </h1>
