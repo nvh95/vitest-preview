@@ -44,6 +44,8 @@ pnpm add -D vitest-preview
 
 ## Configuration
 
+### Process CSS
+
 You need to configure `vitest` to process CSS by:
 
 ```diff
@@ -76,12 +78,23 @@ export default defineConfig({
 
 ```
 
+### Add script vitest-preview
+
 `vitest-preview` has a CLI that opens **Vitest Preview Dashboard** where you can preview your tests' UI. You can update your `package.json` to add a script for more convenience:
 
 ```json
 "scripts": {
   "vitest-preview": "vitest-preview"
 },
+```
+
+### Update .gitignore
+
+Update your `.gitignore`
+
+```diff
+// .gitignore
++.vitest-preview
 ```
 
 ## Usage

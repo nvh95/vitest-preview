@@ -8,8 +8,8 @@ import json from '@rollup/plugin-json';
 
 import pkg from './package.json' assert { type: 'json' };
 
-const entries = ['src/index.ts', 'src/node/previewServer.ts'];
-
+const entries = ['src/index.ts'];
+const cliEntries = ['src/node/previewServer.ts'];
 const dtsEntries = ['src/index.ts'];
 
 const external = [
@@ -38,6 +38,17 @@ export default ({ watch }) =>
       output: {
         dir: 'dist',
         format: 'esm',
+      },
+      external,
+      plugins: [...plugins],
+    },
+    {
+      input: cliEntries,
+      output: {
+        dir: 'dist',
+        format: 'esm',
+        banner: '#!/usr/bin/env node',
+        entryFileNames: '[name].mjs',
       },
       external,
       plugins: [...plugins],
