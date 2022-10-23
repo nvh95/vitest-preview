@@ -19,7 +19,7 @@ export default defineConfig({
 
   themeConfig: {
     nav: nav(),
-
+    logo: 'logo.svg',
     sidebar: {
       '/guide/': sidebarGuide(),
     },
