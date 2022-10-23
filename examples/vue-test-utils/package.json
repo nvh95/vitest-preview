@@ -1,0 +1,20 @@
+{
+  "name": "@vitest-preview/example-vue-test-utils",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "test": "vitest",
+    "vitest-preview": "vitest-preview"
+  },
+  "dependencies": {
+    "vue": "latest"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "latest",
+    "@vue/test-utils": "^2.0.0",
+    "jsdom": "latest",
+    "vite": "latest",
+    "vitest": "latest",
+    "vitest-preview": "workspace:*"
+  }
+}
