@@ -3,7 +3,7 @@ import { version } from '../../../packages/vitest-preview/package.json';
 
 export default defineConfig({
   lang: 'en-US',
-  title: 'VitePreview',
+  title: 'Vitest Preview',
   description: 'Visual Debugging Experience for Vitest 🧪🖼⚡️',
 
   lastUpdated: true,
