@@ -3,7 +3,7 @@
 </p>
 
 <h1 align="center">
-Vitest Preview
+<a href="https://www.vitest-preview.com" target="_blank" >Vitest Preview</a>
 </h1>
 
 <p align="center">
