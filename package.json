@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prettier": "prettier apps packages --check",
+    "prettier": "prettier examples packages --check",
     "prettier:fix": "pnpm run prettier --write"
   },
   "keywords": [],
