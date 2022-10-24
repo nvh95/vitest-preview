@@ -25,12 +25,12 @@ export default defineConfig({
     },
 
     editLink: {
-      pattern: 'https://github.com/nvh95/vite-preview/edit/main/docs/:path',
+      pattern: 'https://github.com/nvh95/vitest-preview/edit/main/docs/:path',
       text: 'Edit this page on GitHub',
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/nvh95/vite-preview' },
+      { icon: 'github', link: 'https://github.com/nvh95/vitest-preview' },
       { icon: 'twitter', link: 'https://twitter.com/VitestPreview' },
     ],
 

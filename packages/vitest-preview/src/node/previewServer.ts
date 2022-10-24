@@ -51,7 +51,7 @@ async function createServer() {
     // optimizeDeps: {
     //   exclude: ['.vitest-preview'],
     // },
-    // TODO: When issue https://github.com/vitejs/vite/issues/8619 closes, we can move .vite-preview into `node_modules`
+    // TODO: When issue https://github.com/vitejs/vite/issues/8619 closes, we can move .vitest-preview into `node_modules`
     // For now, we workaround by putting it outside node_modules
     // Other option: Can we use Virtual File System? (like previewjs/ how does it work?)
     appType: 'custom',
