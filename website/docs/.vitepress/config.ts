@@ -46,7 +46,7 @@ function nav() {
   return [
     {
       text: 'Guide',
-      link: '/guide/what-is-vitepreview',
+      link: '/guide/what-is-vitest-preview',
       activeMatch: '/guide/',
     },
     {
