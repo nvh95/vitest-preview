@@ -88,6 +88,10 @@ function sidebarGuide() {
       items: [
         { text: 'React Testing Library', link: '/guide/react-testing-library' },
         { text: '@vue/test-utils', link: '/guide/vue-test-utils' },
+        {
+          text: 'Svelte Testing library',
+          link: '/guide/svelte-testing-library',
+        },
       ],
     },
   ];
