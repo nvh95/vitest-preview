@@ -22,7 +22,7 @@ pnpm test
 
 - Modify [App.spec.ts](./App.spec.ts) to see the changes reflects in **Vitest Preview Dashboard** immediately.
 
-## Why does the preview UI does not look the same as the real app UI?
+## Why doesn't the preview UI look the same as the real app UI?
 
 If the preview UI is different from the real app UI, there are 2 possible reasons:
 

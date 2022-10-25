@@ -94,5 +94,15 @@ function sidebarGuide() {
         },
       ],
     },
+    {
+      text: 'Others',
+      collapsible: true,
+      items: [
+        {
+          text: 'Frequently Asked Questions',
+          link: '/guide/faq',
+        },
+      ],
+    },
   ];
 }
