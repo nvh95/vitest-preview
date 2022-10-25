@@ -38,6 +38,11 @@ export default defineConfig({
       message: 'Released under the MIT License.',
       copyright: 'Copyright © 2022-present Hung Nguyen',
     },
+    algolia: {
+      appId: 'VFA88CUWX7',
+      apiKey: '8354d53c7d31449dc1312e81d441fbf4',
+      indexName: 'vitest-preview',
+    },
   },
   appearance: 'dark',
 });
