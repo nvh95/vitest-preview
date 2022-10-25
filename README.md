@@ -141,6 +141,10 @@ Please see the contribution guide at [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 Yes, it is. It's [Jest Preview](https://github.com/nvh95/jest-preview).
 
+## Star history
+
+[![Star History Chart](https://api.star-history.com/svg?repos=nvh95/vitest-preview&type=Date)](https://star-history.com/#nvh95/vitest-preview&Date)
+
 ## License
 
 ![This is open source software](https://user-images.githubusercontent.com/8603085/161439058-98faea42-c6e6-46f4-9ce6-218fad5f3b9a.gif)
