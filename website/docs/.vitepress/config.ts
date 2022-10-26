@@ -45,7 +45,6 @@ export default defineConfig({
     //   indexName: 'vitest-preview',
     // },
   },
-  appearance: 'dark',
 });
 
 function nav() {

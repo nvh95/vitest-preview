@@ -1,6 +1,6 @@
 # What is Vitest Preview
 
-Vitest Preview is [Jest Preview](https://github.com/nvh95/jest-preview)'s little brother. Vitest Preview is built on top of Vite and has first-class support for Vitest.
+Vitest Preview is [Jest Preview](https://github.com/nvh95/jest-preview)'s little brother. Vitest Preview is built on top of Vite and has first-class support for Vitest and is blazing fast!
 
 ## Why Vitest Preview?
 
