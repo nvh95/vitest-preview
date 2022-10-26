@@ -9,12 +9,15 @@ hero:
   text: Visual Debugging Experience for Vitest
   tagline: Debug your Vitest tests. Effortlessly. 🧪🖼⚡️
   actions:
-    - theme: brand
+    - theme: alt
       text: Get Started
       link: /guide/getting-started
     - theme: alt
       text: View on GitHub
       link: https://github.com/nvh95/vitest-preview
+    - theme: brand
+      text: Try now
+      link: http://bit.ly/try-vitest-preview
 
 features:
   - title: 'DX Driven'
