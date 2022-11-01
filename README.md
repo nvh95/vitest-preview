@@ -1,7 +1,4 @@
 <p align="center">
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
  <img align="center" alt="Vitest Preview Logo" src="https://user-images.githubusercontent.com/8603085/197406675-dbe5b555-3a71-4c6d-9547-776c18052881.svg" width="120"/>
 </p>
 
@@ -20,6 +17,12 @@ Debug your Vitest tests. Effortlessly. 🧪🖼⚡️
 <p align="center">
   <a href="https://stackblitz.com/edit/vitest-preview?file=src%2FApp.test.tsx,README.md" title="Try Vitest Preview Now" target="_blank">Try Vitest Preview Online</a>. No downloads needed!
 </p>
+
+<!-- prettier-ignore-start -->
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+<!-- prettier-ignore-end -->
 
 [![npm version](https://img.shields.io/npm/v/vitest-preview)](https://www.npmjs.com/package/vitest-preview)
 [![Best of JS](https://img.shields.io/endpoint?url=https://bestofjs-serverless.now.sh/api/project-badge?fullName=nvh95%2Fvitest-preview%26since=day)](https://bestofjs.org/projects/vitest-preview)
@@ -137,10 +140,6 @@ Then execute your tests that contain `debug()`. You will see the UI of your test
 - [react-testing-library](https://github.com/nvh95/vitest-preview/tree/main/examples/react-testing-library)
 - [@vue/test-utils](https://github.com/nvh95/vitest-preview/tree/main/examples/vue-test-utils)
 
-## Contributing
-
-Please see the contribution guide at [CONTRIBUTING.md](./CONTRIBUTING.md).
-
 ## Is there a similar library for Jest
 
 Yes, it is. It's [Jest Preview](https://github.com/nvh95/jest-preview).
@@ -149,17 +148,9 @@ Yes, it is. It's [Jest Preview](https://github.com/nvh95/jest-preview).
 
 [![Star History Chart](https://api.star-history.com/svg?repos=nvh95/vitest-preview&type=Date)](https://star-history.com/#nvh95/vitest-preview&Date)
 
-## License
+## Contributing
 
-![This is open source software](https://user-images.githubusercontent.com/8603085/161439058-98faea42-c6e6-46f4-9ce6-218fad5f3b9a.gif)
-
-MIT
-
-## Support
-
-If you like the project, please consider supporting it by giving a ⭐️ to encourage the author.
-
-<!-- TODO: Write a GitHub Actions to sync with root readme -->
+Please see the contribution guide at [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ## Contributors ✨
 
@@ -182,3 +173,15 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+## License
+
+![This is open source software](https://user-images.githubusercontent.com/8603085/161439058-98faea42-c6e6-46f4-9ce6-218fad5f3b9a.gif)
+
+MIT
+
+## Support
+
+If you like the project, please consider supporting it by giving a ⭐️ to encourage the author.
+
+<!-- TODO: Write a GitHub Actions to sync with root readme -->
