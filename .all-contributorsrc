@@ -14,6 +14,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "KatFishSnake",
+      "name": "Andre",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12003520?v=4",
+      "profile": "https://github.com/KatFishSnake",
+      "contributions": [
+        "example"
+      ]
     }
   ],
   "contributorsPerLine": 7,
