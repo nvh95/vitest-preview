@@ -81,7 +81,7 @@ function nav() {
           link: '/',
         },
         {
-          text: '简体中文',
+          text: '中文',
           link: '/zh/',
         },
       ],
