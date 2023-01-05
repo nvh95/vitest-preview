@@ -38,6 +38,7 @@ export default defineConfig({
       message: 'Released under the MIT License.',
       copyright: 'Copyright © 2022-present Hung Nguyen',
     },
+    
     // TODO: Wait until Algolia Docsearch request get approved
     // algolia: {
     //   appId: 'VFA88CUWX7',
@@ -45,6 +46,21 @@ export default defineConfig({
     //   indexName: 'vitest-preview',
     // },
   },
+
+  locales:{
+     // The key is the path for the locale to be nested under.
+    // As a special case, the default locale can use '/' as its path.
+    '/': {
+      lang: 'en-US',
+      title: 'Vitest Preview',
+      description: 'Visual Debugging Experience for Vitest 🧪🖼⚡️',
+    },
+    '/zh/': {
+      lang: 'zh-CN',
+      title: 'Vitest Preview',
+      description: '为 Vitest 带来可视化调试体验 🧪🖼⚡️',
+    },
+  }
 });
 
 function nav() {
