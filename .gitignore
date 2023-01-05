@@ -32,5 +32,3 @@ draft
 
 coverage
 .vitest-preview
-
-yarn.lock*
