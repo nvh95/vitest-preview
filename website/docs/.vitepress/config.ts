@@ -22,7 +22,7 @@ export default defineConfig({
     logo: 'logo.svg',
     sidebar: {
       '/guide/': sidebarGuide(),
-      '/zh/guide/': sidebarGuide_zhCN()
+      '/zh/guide/': sidebarGuideCN()
     },
 
     editLink: {
@@ -47,21 +47,6 @@ export default defineConfig({
     //   indexName: 'vitest-preview',
     // },
   },
-
-  locales:{
-     // The key is the path for the locale to be nested under.
-    // As a special case, the default locale can use '/' as its path.
-    '/': {
-      lang: 'en-US',
-      title: 'Vitest Preview',
-      description: 'Visual Debugging Experience for Vitest 🧪🖼⚡️',
-    },
-    '/zh/': {
-      lang: 'zh-CN',
-      title: 'Vitest Preview',
-      description: '为 Vitest 带来可视化调试体验 🧪🖼⚡️',
-    },
-  }
 });
 
 function nav() {
@@ -142,7 +127,7 @@ function sidebarGuide() {
   ];
 }
 
-function sidebarGuide_zhCN() {
+function sidebarGuideCN() {
   return [
     {
       text: '介绍',
