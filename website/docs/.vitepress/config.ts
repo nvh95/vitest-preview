@@ -88,6 +88,19 @@ function nav() {
         },
       ],
     },
+    {
+      text: "Language",
+      items: [
+        {
+          text: 'English',
+          link: '/',
+        },
+        {
+          text: '简体中文',
+          link: '/zh/',
+        },
+      ],
+    },
   ];
 }
 
