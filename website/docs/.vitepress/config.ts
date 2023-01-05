@@ -22,6 +22,7 @@ export default defineConfig({
     logo: 'logo.svg',
     sidebar: {
       '/guide/': sidebarGuide(),
+      '/zh/guide/': sidebarGuide_zhCN(),
     },
 
     editLink: {
@@ -122,6 +123,44 @@ function sidebarGuide() {
         {
           text: 'Frequently Asked Questions',
           link: '/guide/faq',
+        },
+      ],
+    },
+  ];
+}
+
+function sidebarGuide_zhCN() {
+  return [
+    {
+      text: '介绍',
+      collapsible: true,
+      items: [
+        {
+          text: 'Vitest Preview 是什么？',
+          link: '/zh/guide/what-is-vitest-preview',
+        },
+        { text: '起步', link: '/zh/guide/getting-started' },
+      ],
+    },
+    {
+      text: '示例',
+      collapsible: true,
+      items: [
+        { text: 'React 测试库', link: '/zh/guide/react-testing-library' },
+        { text: '@vue/test-utils', link: '/zh/guide/vue-test-utils' },
+        {
+          text: 'Svelte 测试库',
+          link: '/zh/guide/svelte-testing-library',
+        },
+      ],
+    },
+    {
+      text: '其它',
+      collapsible: true,
+      items: [
+        {
+          text: '常见问题',
+          link: '/zh/guide/faq',
         },
       ],
     },

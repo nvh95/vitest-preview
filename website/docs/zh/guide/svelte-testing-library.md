@@ -1,3 +1,3 @@
-# Svelte Testing Library
+# Svelte 测试库
 
-See more at <https://github.com/nvh95/vitest-preview/tree/main/examples/svelte-testing-library>
+参见 <https://github.com/nvh95/vitest-preview/tree/main/examples/svelte-testing-library>

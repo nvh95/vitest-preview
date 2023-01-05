@@ -1,20 +1,20 @@
-# Frequently Asked Questions
+# 常见问题
 
-## Why doesn't the preview UI look the same as the real app UI?
+## 为什么预览 UI 和实际 UI 不一样？
 
-If the preview UI is different from the real app UI, there are 2 possible reasons:
+可能有两个原因:
 
-1. You haven't imported global CSS files yet. Refer to <https://www.vitest-preview.com/guide/getting-started#process-css>
+1. 你没有引入全局 CSS 文件，参阅 <https://www.vitest-preview.com/guide/getting-started#process-css>
 
 ```js
 // test/setup.ts
 import '../global.css';
 ```
 
-2. The HTML structure in tests is different. You need to update the `jsdom` to match the real UI. You can do that by mutating the DOM in the setup file, or pass some options to `render` function. See an example at:
+2. 测试中的 HTML 结构不一样。 你需要更新 `jsdom` 来和实际UI匹配. 你可以在 setup 文件中手动修改 DOM, 或者传递一些参数来渲染组件。参考这个例子:
 
 - https://github.com/nvh95/vitest-preview/tree/main/examples/svelte-testing-library#why-does-the-preview-ui-does-not-look-the-same-as-the-real-app-ui
 
-## The preview is blank when I use with @vue/test-utils
+## 配合 @vue/test-utils 使用时，预览页面空白了
 
-By default, `@vue/test-utils` does not mount the component to the jsdom. You need to pass `attachTo` to `mount` function to make it work. See more at <https://github.com/nvh95/vitest-preview/tree/main/examples/vue-test-utils#caveats>
+`@vue/test-utils`默认不会把组件挂载到 jsdom 上。你需要把 `attachTo` 函数传递给 `mount` 函数来启用。参阅 <https://github.com/nvh95/vitest-preview/tree/main/examples/vue-test-utils#caveats>

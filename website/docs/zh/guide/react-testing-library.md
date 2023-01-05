@@ -1,3 +1,3 @@
-# React Testing Library
+# React 测试库
 
-See more at <https://github.com/nvh95/vitest-preview/tree/main/examples/react-testing-library>
+参见 <https://github.com/nvh95/vitest-preview/tree/main/examples/react-testing-library>
