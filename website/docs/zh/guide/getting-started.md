@@ -1,6 +1,6 @@
 # 起步
 
-这一部分将指导你用 `vitest-preview` 来实现可视化调试. 你也可以通过 [StackBlitz](https://stackblitz.com/edit/vitest-preview?file=src%2FApp.test.tsx,README.md) 来体验而无需安装.
+这一部分将指导你用 `vitest-preview` 来实现可视化调试. 如果你不想安装，你也可以通过 [StackBlitz](https://stackblitz.com/edit/vitest-preview?file=src%2FApp.test.tsx,README.md) 来体验.
 
 [![Try Vitest Preview now](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/vitest-preview?file=src%2FApp.test.tsx,README.md)
 
@@ -16,7 +16,7 @@
 
 ```bash
 npm install --save-dev vitest-preview
-# Or
+# 或者
 yarn add -D vitest-preview
 pnpm add -D vitest-preview
 ```
@@ -37,7 +37,7 @@ export default defineConfig({
 
 ```
 
-You might want to import your CSS global files in `setupFiles`:
+如果要引入全局 CSS 文件， 请放入`setupFiles`中:
 
 ```diff
 // vite.config.js
@@ -56,9 +56,9 @@ import '@your-design-system/css/dist/index.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 ```
 
-### Add script vitest-preview
+### 添加脚本
 
-`vitest-preview` has a CLI that opens **Vitest Preview Dashboard** where you can preview your tests' UI. You can update your `package.json` to add a script for more convenience:
+`vitest-preview` 拥有一个命令行工具来启动 **Vitest Preview 面板**。 你可以在面板中调试你的 UI。 方便起见，你可以在`package.json`添加一行命令：
 
 ```json
 "scripts": {
@@ -99,4 +99,4 @@ yarn vitest-preview
 pnpm vitest-preview
 ```
 
-Then execute your tests that contain `debug()`. You will see the UI of your tests at localhost:5006.
+然后，执行你插入了 `debug()` 的测试。 测试的 UI 将在 [localhost:5006](http://localhost:5006) 打开。

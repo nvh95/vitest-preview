@@ -11,7 +11,7 @@ hero:
   actions:
     - theme: alt
       text: 起步
-      link: /guide/getting-started
+      link: /zh/guide/getting-started
     - theme: alt
       text: GitHub
       link: https://github.com/nvh95/vitest-preview
