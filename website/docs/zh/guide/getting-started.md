@@ -1,6 +1,6 @@
-# Getting Started
+# 起步
 
-这一部分将全程指导你用 `vitest-preview` 来实现可视化调试. 你也可以通过 [StackBlitz](https://stackblitz.com/edit/vitest-preview?file=src%2FApp.test.tsx,README.md) 来体验而无需安装.
+这一部分将指导你用 `vitest-preview` 来实现可视化调试. 你也可以通过 [StackBlitz](https://stackblitz.com/edit/vitest-preview?file=src%2FApp.test.tsx,README.md) 来体验而无需安装.
 
 [![Try Vitest Preview now](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/vitest-preview?file=src%2FApp.test.tsx,README.md)
 
@@ -9,10 +9,10 @@
 </p>
 
 ::: warning
-If you are using Jest, you can try [jest-preview](https://github.com/nvh95/jest-preview) with a similar functionality.
+如果你在使用 Jest, 不妨试试类似的 [jest-preview](https://github.com/nvh95/jest-preview) .
 :::
 
-## Step 1: Installation
+## Step 1: 安装
 
 ```bash
 npm install --save-dev vitest-preview
@@ -21,11 +21,11 @@ yarn add -D vitest-preview
 pnpm add -D vitest-preview
 ```
 
-## Step 2: Configuration
+## Step 2: 配置
 
-### Process CSS
+### 处理 CSS
 
-You need to configure `vitest` to process CSS by:
+你需要在 `vitest` 中启用处理 CSS:
 
 ```diff
 // vite.config.js
@@ -66,18 +66,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 },
 ```
 
-### Update .gitignore
+### 更新 .gitignore
 
-Update your `.gitignore`
+更新`.gitignore`
 
 ```
 // .gitignore
 .vitest-preview
 ```
 
-## Step 3: Usage
+## Step 3: 使用
 
-Put `debug()` wherever you want to see the UI in your tests.
+在你想在测试中使用UI的位置，执行 `debug()` 方法。
 
 ```diff
 +import { debug } from 'vitest-preview';
@@ -90,11 +90,11 @@ describe('App', () => {
 });
 ```
 
-Open the **Vitest Preview Dashboard** by running the CLI command (updated in [Configuration](#step-2-configuration)):
+执行以下命令来打开 **Vitest Preview 面板** (你可以在 [配置](#step-2-configuration) 中自定义命令):
 
 ```bash
 npm run vitest-preview
-# Or
+# 或者
 yarn vitest-preview
 pnpm vitest-preview
 ```
