@@ -27,5 +27,5 @@ features:
   - title: 无缝衔接 Vitest
     details: 只需少量配置，即可在浏览器中可视化你的 Vitest 测试
   - title: 高质量应用
-    details: Vitest Preview 能帮助你更快更轻松地建立测试。 你的应用也会有更好的可靠性和拓展性。
+    details: Vitest Preview 能帮助你更快更轻松地建立测试。你的应用也会有更好的可靠性和拓展性。
 ---
