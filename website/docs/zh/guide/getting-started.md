@@ -99,4 +99,4 @@ yarn vitest-preview
 pnpm vitest-preview
 ```
 
-然后，执行你插入了 `debug()` 的测试。 测试的 UI 将在 [localhost:5006](http://localhost:5006) 打开。
+然后，执行你插入了 `debug()` 的测试。 测试的 UI 将在 <a href="http://localhost:5006" target="_blank" rel="noreferrer">localhost:5006</a> 打开。

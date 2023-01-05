@@ -22,7 +22,7 @@ export default defineConfig({
     logo: 'logo.svg',
     sidebar: {
       '/guide/': sidebarGuide(),
-      '/zh/guide/': sidebarGuide_zhCN(),
+      '/zh/guide/': sidebarGuide_zhCN()
     },
 
     editLink: {
