@@ -58,7 +58,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 ### 添加脚本
 
-`vitest-preview` 拥有一个命令行工具来启动 **Vitest Preview 面板**。 你可以在面板中调试你的 UI。 方便起见，你可以在`package.json`添加一行命令：
+`vitest-preview` 拥有一个命令行工具来启动 **Vitest Preview 面板**。 你可以在面板中调试你的 UI。方便起见，你可以在`package.json`添加一行命令：
 
 ```json
 "scripts": {
@@ -77,7 +77,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 ## Step 3: 使用
 
-在你想在测试中使用UI的位置，执行 `debug()` 方法。
+在你想在测试中使用 UI 的位置，执行 `debug()` 方法。
 
 ```diff
 +import { debug } from 'vitest-preview';

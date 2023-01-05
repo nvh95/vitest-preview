@@ -4,7 +4,7 @@ Vitest Preview 是 [Jest Preview](https://github.com/nvh95/jest-preview) 的孪�
 
 ## 选择 Vitest Preview 的理由?
 
-编写测试时，我们通常会阅读终端输出的 HTML 来调试。有时候，这些 HTML 太复杂，我们很难在脑海中想象出UI。
+编写测试时，我们通常会阅读终端输出的 HTML 来调试。有时候，这些 HTML 太复杂，我们很难在脑海中想象出 UI。
 
 `vitest-preview` 在浏览器中预览你的测试，然后你可以看到你的实际 UI。你可以编写测试并观察渲染的输出。Vitest Preview 让你专注于“真实世界”中的测试，而不是去思考 HTML 代码。
 

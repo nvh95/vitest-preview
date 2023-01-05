@@ -7,7 +7,7 @@ titleTemplate: Visual Debugging Experience for Vitest
 hero:
   name: Vitest Preview
   text: 可视化 Vitest 调试体验
-  tagline: 调试 Vitest 测试，如此简单。 🧪🖼⚡️
+  tagline: 轻松调试 Vitest 测试 🧪🖼⚡️
   actions:
     - theme: alt
       text: 起步
