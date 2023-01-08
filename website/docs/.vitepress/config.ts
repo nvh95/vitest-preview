@@ -22,6 +22,7 @@ export default defineConfig({
     logo: 'logo.svg',
     sidebar: {
       '/guide/': sidebarGuide(),
+      '/zh/guide/': sidebarGuideCN()
     },
 
     editLink: {
@@ -38,6 +39,7 @@ export default defineConfig({
       message: 'Released under the MIT License.',
       copyright: 'Copyright © 2022-present Hung Nguyen',
     },
+    
     // TODO: Wait until Algolia Docsearch request get approved
     // algolia: {
     //   appId: 'VFA88CUWX7',
@@ -68,6 +70,19 @@ function nav() {
         {
           text: 'Contributing',
           link: 'https://github.com/nvh95/vitest-preview/blob/main/CONTRIBUTING.md',
+        },
+      ],
+    },
+    {
+      text: "Language",
+      items: [
+        {
+          text: 'English',
+          link: '/',
+        },
+        {
+          text: '中文',
+          link: '/zh/',
         },
       ],
     },
@@ -106,6 +121,44 @@ function sidebarGuide() {
         {
           text: 'Frequently Asked Questions',
           link: '/guide/faq',
+        },
+      ],
+    },
+  ];
+}
+
+function sidebarGuideCN() {
+  return [
+    {
+      text: '介绍',
+      collapsible: true,
+      items: [
+        {
+          text: 'Vitest Preview 是什么？',
+          link: '/zh/guide/what-is-vitest-preview',
+        },
+        { text: '起步', link: '/zh/guide/getting-started' },
+      ],
+    },
+    {
+      text: '示例',
+      collapsible: true,
+      items: [
+        { text: 'React 测试库', link: '/zh/guide/react-testing-library' },
+        { text: '@vue/test-utils', link: '/zh/guide/vue-test-utils' },
+        {
+          text: 'Svelte 测试库',
+          link: '/zh/guide/svelte-testing-library',
+        },
+      ],
+    },
+    {
+      text: '其它',
+      collapsible: true,
+      items: [
+        {
+          text: '常见问题',
+          link: '/zh/guide/faq',
         },
       ],
     },
