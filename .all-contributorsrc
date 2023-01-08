@@ -23,6 +23,15 @@
       "contributions": [
         "example"
       ]
+    },
+    {
+      "login": "RiverTwilight",
+      "name": "René Wang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/52880665?v=4",
+      "profile": "https://github.com/RiverTwilight",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
