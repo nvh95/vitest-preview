@@ -47,7 +47,7 @@
     "@vitest-preview/dev-utils": "workspace:*",
     "@types/node": "^18.11.3",
     "express": "^4.18.2",
-    "vite": "^3.0.0"
+    "vite": "^4.4.8"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^23.0.2",
