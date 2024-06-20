@@ -1,6 +1,4 @@
-/// <reference types="vitest" />
-/// <reference types="vite/client" />
-
+/// <reference types="vitest/config" />
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 

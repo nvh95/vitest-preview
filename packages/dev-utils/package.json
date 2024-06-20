@@ -4,15 +4,15 @@
   "description": "",
   "type": "module",
   "main": "dist/index.js",
-  "module": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
     "copy": "mkdir dist && cp src/openChrome.applescript dist/openChrome.applescript",
-    "build": "rimraf dist && pnpm run copy && rollup -c",
-    "build:watch": "rimraf dist && pnpm run copy && rollup -c -w",
+    "build": "rimraf dist && pnpm run copy && pkgroll",
+    "build:watch": "rimraf dist && pnpm run copy && pkgroll --watch",
     "prepublishOnly": "pnpm run build"
   },
   "keywords": [],
@@ -22,14 +22,10 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^23.0.2",
-    "@rollup/plugin-json": "^5.0.1",
-    "@rollup/plugin-node-resolve": "^15.0.1",
-    "rollup": "^3.2.3",
-    "rollup-plugin-dts": "^5.0.0",
-    "rollup-plugin-esbuild": "^4.10.1"
+    "@types/node": "^20.14.6",
+    "pkgroll": "2.1.1"
   },
   "dependencies": {
-    "open": "^8.4.0"
+    "open": "^10.1.0"
   }
 }
