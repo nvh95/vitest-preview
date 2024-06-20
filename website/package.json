@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "vitepress dev docs",
-    "build": "vitepress build docs",
+    "build": "pnpm run build",
+    "docs:build": "vitepress build docs",
     "serve": "vitepress serve docs"
   },
   "keywords": [],
