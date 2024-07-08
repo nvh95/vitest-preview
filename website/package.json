@@ -3,19 +3,21 @@
   "version": "0.0.1",
   "description": "Documentation of Vitest Preview",
   "private": true,
+  "type": "module",
   "scripts": {
-    "docs:dev": "vitepress dev docs",
+    "dev": "vitepress dev docs",
+    "build": "pnpm run build",
     "docs:build": "vitepress build docs",
-    "docs:serve": "vitepress serve docs"
+    "serve": "vitepress serve docs"
   },
   "keywords": [],
   "author": {
     "name": "Hung Viet Nguyen",
     "url": "https://github.com/nvh95"
   },
-  "dependencies": {
-    "vitepress": "latest",
-    "vue": "latest"
+  "devDependencies": {
+    "vitepress": "1.2.3",
+    "vue": "3.4.29"
   },
   "license": "MIT"
 }
