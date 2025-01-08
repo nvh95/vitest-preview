@@ -8,7 +8,7 @@ import { fileURLToPath } from 'url';
 import { openBrowser } from '@vitest-preview/dev-utils';
 
 import { CACHE_FOLDER } from '../constants';
-import { createCacheFolderIfNeeded } from '../utils';
+import { createCacheFolderIfNeeded, getCssFileConfig } from '../utils';
 
 // TODO: Find the available port
 const port = process.env.PORT || 5006;
@@ -21,6 +21,12 @@ const emptyHtml = fs.readFileSync(
   'utf-8',
 );
 fs.writeFileSync(path.join(CACHE_FOLDER, 'index.html'), emptyHtml);
+
+const cssFile = getCssFileConfig();
+if (cssFile) {
+  console.log('copying css file', cssFile, 'into cache folder');
+  fs.copyFileSync(cssFile, path.join(CACHE_FOLDER, '__vitest-preview.css'));
+}
 
 async function createServer() {
   const app = express();
@@ -58,6 +64,9 @@ async function createServer() {
   });
 
   app.use(vite.middlewares);
+  if (cssFile) {
+    app.use('/__vitest-preview.css', express.static(path.join(CACHE_FOLDER, '__vitest-preview.css')));
+  }
 
   app.use('*', async (req, res, next) => {
     const url = req.originalUrl;

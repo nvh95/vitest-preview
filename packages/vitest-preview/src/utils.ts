@@ -9,3 +9,10 @@ export function createCacheFolderIfNeeded() {
     });
   }
 }
+
+export function getCssFileConfig() {
+  const commandLineArgs = process.argv.slice(2);
+  const cssFile = commandLineArgs.find((arg) => arg.startsWith('--css='))?.split('=')[1] || null;
+
+  return cssFile;
+}
