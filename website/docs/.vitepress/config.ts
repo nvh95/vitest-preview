@@ -7,9 +7,12 @@ export default defineConfig({
   description: 'Visual Debugging Experience for Vitest 🧪🖼⚡️',
 
   lastUpdated: true,
-  cleanUrls: 'without-subfolders',
+  cleanUrls: true,
 
-  head: [['meta', { name: 'theme-color', content: '#3c8772' }]],
+  head: [
+    ['meta', { name: 'theme-color', content: '#3c8772' }],
+    ['link', { rel: 'icon', href: '/logo.svg' }],
+  ],
 
   markdown: {
     headers: {
@@ -22,7 +25,7 @@ export default defineConfig({
     logo: 'logo.svg',
     sidebar: {
       '/guide/': sidebarGuide(),
-      '/zh/guide/': sidebarGuideCN()
+      '/zh/guide/': sidebarGuideCN(),
     },
 
     editLink: {
@@ -39,7 +42,7 @@ export default defineConfig({
       message: 'Released under the MIT License.',
       copyright: 'Copyright © 2022-present Hung Nguyen',
     },
-    
+
     // TODO: Wait until Algolia Docsearch request get approved
     // algolia: {
     //   appId: 'VFA88CUWX7',
@@ -74,7 +77,7 @@ function nav() {
       ],
     },
     {
-      text: "Language",
+      text: 'Language',
       items: [
         {
           text: 'English',
