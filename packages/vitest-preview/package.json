@@ -27,7 +27,8 @@
     "productivity",
     "debug",
     "preview vitest",
-    "vitest browser"
+    "vitest browser",
+    "visual testing"
   ],
   "homepage": "https://www.vitest-preview.com",
   "repository": {
