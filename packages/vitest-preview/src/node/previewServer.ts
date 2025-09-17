@@ -15,7 +15,6 @@ import {
   findAvailablePort,
 } from '../utils';
 
-// TODO: Find the available port
 const port = process.env.PORT
   ? Number(process.env.PORT)
   : await findAvailablePort(5006);
