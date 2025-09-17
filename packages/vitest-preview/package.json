@@ -3,14 +3,21 @@
   "version": "0.0.1",
   "description": "Visual Debugging Experience for Vitest 🧪🖼⚡️",
   "type": "module",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./node/previewServer": {
+      "import": "./dist/node/previewServer.js"
+    }
+  },
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "bin": {
-    "vitest-preview": "./dist/node/previewServer.mjs"
+    "vitest-preview": "./dist/node/previewServer.js"
   },
   "scripts": {
     "copy": "mkdir -p dist/node && cp src/node/empty.html dist/node/empty.html",
