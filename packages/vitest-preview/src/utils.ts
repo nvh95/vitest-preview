@@ -9,3 +9,9 @@ export function createCacheFolderIfNeeded() {
     });
   }
 }
+
+export function clearCache() {
+  if (fs.existsSync(CACHE_FOLDER)) {
+    fs.rmSync(CACHE_FOLDER, { recursive: true, force: true });
+  }
+}

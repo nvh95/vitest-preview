@@ -8,7 +8,7 @@ import { fileURLToPath } from 'url';
 import { openBrowser } from '@vitest-preview/dev-utils';
 
 import { CACHE_FOLDER } from '../constants';
-import { createCacheFolderIfNeeded } from '../utils';
+import { clearCache, createCacheFolderIfNeeded } from '../utils';
 
 // TODO: Find the available port
 const port = process.env.PORT ? Number(process.env.PORT) : 5006;
@@ -79,3 +79,23 @@ async function createServer() {
 }
 
 createServer();
+
+// Register cleanup on exit
+function registerCleanup() {
+  process.on('exit', clearCache);
+  process.on('SIGINT', () => {
+    clearCache();
+    process.exit(0);
+  });
+  process.on('SIGTERM', () => {
+    clearCache();
+    process.exit(0);
+  });
+  process.on('uncaughtException', (err) => {
+    console.error('Uncaught exception:', err);
+    clearCache();
+    process.exit(1);
+  });
+}
+
+registerCleanup();
