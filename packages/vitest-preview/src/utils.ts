@@ -15,3 +15,30 @@ export function clearCache() {
     fs.rmSync(CACHE_FOLDER, { recursive: true, force: true });
   }
 }
+
+import net from 'net';
+
+export async function findAvailablePort(
+  start = 5006,
+  max = 65535,
+): Promise<number> {
+  function check(port: number): Promise<boolean> {
+    return new Promise((resolve) => {
+      const server = net
+        .createServer()
+        .once('error', () => resolve(false))
+        .once('listening', () => {
+          server.close();
+          resolve(true);
+        })
+        .listen(port);
+    });
+  }
+
+  for (let port = start; port <= max; port++) {
+    if (await check(port)) {
+      return port;
+    }
+  }
+  throw new Error(`No available port between ${start} and ${max}`);
+}

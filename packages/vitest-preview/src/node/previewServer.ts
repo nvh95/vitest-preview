@@ -1,5 +1,6 @@
 // https://vitejs.dev/guide/ssr.html#setting-up-the-dev-server
 import fs from 'fs';
+import http from 'http';
 import path from 'path';
 import express from 'express';
 import { createServer as createViteServer, ViteDevServer } from 'vite';
@@ -8,10 +9,16 @@ import { fileURLToPath } from 'url';
 import { openBrowser } from '@vitest-preview/dev-utils';
 
 import { CACHE_FOLDER } from '../constants';
-import { clearCache, createCacheFolderIfNeeded } from '../utils';
+import {
+  clearCache,
+  createCacheFolderIfNeeded,
+  findAvailablePort,
+} from '../utils';
 
 // TODO: Find the available port
-const port = process.env.PORT ? Number(process.env.PORT) : 5006;
+const port = process.env.PORT
+  ? Number(process.env.PORT)
+  : await findAvailablePort(5006);
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -26,6 +33,8 @@ const snapshotHtmlFile = path.join(CACHE_FOLDER, 'index.html');
 
 async function createServer() {
   const app = express();
+
+  const httpServer = http.createServer(app);
   const vite = await createViteServer({
     server: {
       middlewareMode: true,
@@ -37,6 +46,9 @@ async function createServer() {
         },
         // Helps with atomic write/rename on Linux
         awaitWriteFinish: { stabilityThreshold: 80, pollInterval: 10 },
+      },
+      hmr: {
+        server: httpServer,
       },
     },
     appType: 'custom',
@@ -74,7 +86,7 @@ async function createServer() {
     }
   });
 
-  app.listen(port, () => {
+  httpServer.listen(port, () => {
     console.log(`Vitest Preview Server listening on http://localhost:${port}`);
     openBrowser(`http://localhost:${port}`);
   });
