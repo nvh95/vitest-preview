@@ -10,6 +10,6 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './src/test/setup.ts',
     // Need to enable this to use with vitest-preview
-    css: true,
+    css: !process.env.CI,
   },
 });

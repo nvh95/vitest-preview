@@ -31,7 +31,7 @@ You need to configure `vitest` to process CSS by:
 // vite.config.js
 export default defineConfig({
   test: {
-+    css: true,
++    css: !process.env.CI, // We usually don't want to process CSS in CI
   },
 });
 

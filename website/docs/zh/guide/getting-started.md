@@ -31,7 +31,7 @@ pnpm add -D vitest-preview
 // vite.config.js
 export default defineConfig({
   test: {
-+    css: true,
+    css: !process.env.CI, // 在CI环境下通常不需要处理 CSS
   },
 });
 
