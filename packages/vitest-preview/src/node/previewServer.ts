@@ -35,6 +35,8 @@ async function createServer() {
         ignored: function (filePath: string) {
           return path.resolve(filePath) !== snapshotHtmlFile;
         },
+        // Helps with atomic write/rename on Linux
+        awaitWriteFinish: { stabilityThreshold: 80, pollInterval: 10 },
       },
     },
     appType: 'custom',
