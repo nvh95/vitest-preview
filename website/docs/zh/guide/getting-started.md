@@ -66,15 +66,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 },
 ```
 
-### 更新 .gitignore
-
-更新`.gitignore`
-
-```
-// .gitignore
-.vitest-preview
-```
-
 ## Step 3: 使用
 
 在你想在测试中使用 UI 的位置，执行 `debug()` 方法。

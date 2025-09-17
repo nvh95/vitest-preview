@@ -101,15 +101,6 @@ export default defineConfig({
 },
 ```
 
-### Update .gitignore
-
-Update your `.gitignore`
-
-```diff
-// .gitignore
-+.vitest-preview
-```
-
 ## Usage
 
 Put `debug()` wherever you want to see the UI in your tests.

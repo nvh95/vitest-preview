@@ -66,15 +66,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 },
 ```
 
-### Update .gitignore
-
-Update your `.gitignore`
-
-```
-// .gitignore
-.vitest-preview
-```
-
 ## Step 3: Usage
 
 Put `debug()` wherever you want to see the UI in your tests.
