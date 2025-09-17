@@ -11,7 +11,7 @@ import { CACHE_FOLDER } from '../constants';
 import { createCacheFolderIfNeeded } from '../utils';
 
 // TODO: Find the available port
-const port = process.env.PORT || 5006;
+const port = process.env.PORT ? Number(process.env.PORT) : 5006;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -59,7 +59,7 @@ async function createServer() {
 
   app.use(vite.middlewares);
 
-  app.use('*', async (req, res, next) => {
+  app.get('/', async (req, res, next) => {
     const url = req.originalUrl;
 
     try {
