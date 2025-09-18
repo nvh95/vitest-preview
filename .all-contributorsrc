@@ -32,6 +32,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "nknapp",
+      "name": "Nils Knappmeier",
+      "avatar_url": "https://avatars.githubusercontent.com/u/636150?v=4",
+      "profile": "https://blog.knappi.org",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -39,5 +48,6 @@
   "repoType": "github",
   "repoHost": "https://github.com",
   "projectName": "vitest-preview",
-  "projectOwner": "nvh95"
+  "projectOwner": "nvh95",
+  "commitType": "docs"
 }
