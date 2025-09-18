@@ -1,5 +1,6 @@
 // https://vitejs.dev/guide/ssr.html#setting-up-the-dev-server
 import fs from 'fs';
+import http from 'http';
 import path from 'path';
 import express from 'express';
 import { createServer as createViteServer, ViteDevServer } from 'vite';
@@ -8,10 +9,15 @@ import { fileURLToPath } from 'url';
 import { openBrowser } from '@vitest-preview/dev-utils';
 
 import { CACHE_FOLDER } from '../constants';
-import { createCacheFolderIfNeeded } from '../utils';
+import {
+  clearCache,
+  createCacheFolderIfNeeded,
+  findAvailablePort,
+} from '../utils';
 
-// TODO: Find the available port
-const port = process.env.PORT || 5006;
+const port = process.env.PORT
+  ? Number(process.env.PORT)
+  : await findAvailablePort(5006);
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -22,48 +28,48 @@ const emptyHtml = fs.readFileSync(
 );
 fs.writeFileSync(path.join(CACHE_FOLDER, 'index.html'), emptyHtml);
 
+const snapshotHtmlFile = path.join(CACHE_FOLDER, 'index.html');
+
 async function createServer() {
   const app = express();
+
+  const httpServer = http.createServer(app);
   const vite = await createViteServer({
     server: {
       middlewareMode: true,
-      // This does not work on Linux, but work fine on Mac
-      // watch: {
-      // By default, Vite doesn't watch code under node_modules
-      // Reference: https://vitejs.dev/config/server-options.html#server-watch
-      // ignored: ['!**/node_modules/.vitest-preview/**'],
-      // },
+      watch: {
+        // By default, vite watch the root, but we only need to watch `snapshotHtmlFile`
+        // Probably needs to add more in the future
+        ignored: function (filePath: string) {
+          return path.resolve(filePath) !== snapshotHtmlFile;
+        },
+        // Helps with atomic write/rename on Linux
+        awaitWriteFinish: { stabilityThreshold: 80, pollInterval: 10 },
+      },
+      hmr: {
+        server: httpServer,
+      },
     },
-    // Workaround to watch `.vitest-preview`
-    // But it still does not work on Linux
-    // Reference: https://github.com/vitejs/vite/issues/8619#issuecomment-1170762244
-    // plugins: [
-    //   {
-    //     name: 'watch-node-modules',
-    //     configureServer: (server: ViteDevServer): void => {
-    //       server.watcher.options = {
-    //         ...server.watcher.options,
-    //         ignored: [/node_modules\/(?!\.vitest-preview).*/, '**/.git/**'],
-    //       };
-    //     },
-    //   },
-    // ],
-    // optimizeDeps: {
-    //   exclude: ['.vitest-preview'],
-    // },
-    // TODO: When issue https://github.com/vitejs/vite/issues/8619 closes, we can move .vitest-preview into `node_modules`
-    // For now, we workaround by putting it outside node_modules
-    // Other option: Can we use Virtual File System? (like previewjs/ how does it work?)
     appType: 'custom',
   });
 
   app.use(vite.middlewares);
 
-  app.use('*', async (req, res, next) => {
+  // Watch `snapshotHtmlFile` to trigger reload
+  vite.watcher.add(snapshotHtmlFile);
+
+  ['change', 'add', 'unlink'].forEach((event) => {
+    vite.watcher.on(event, (file) => {
+      if (path.resolve(file) === path.resolve(snapshotHtmlFile)) {
+        vite.ws.send({ type: 'full-reload', path: '/' });
+      }
+    });
+  });
+
+  app.get('/', async (req, res, next) => {
     const url = req.originalUrl;
 
     try {
-      const snapshotHtmlFile = path.join(CACHE_FOLDER, 'index.html');
       let template = fs.readFileSync(path.resolve(snapshotHtmlFile), 'utf-8');
       template = await vite.transformIndexHtml(url, template);
 
@@ -79,10 +85,30 @@ async function createServer() {
     }
   });
 
-  app.listen(port, () => {
+  httpServer.listen(port, () => {
     console.log(`Vitest Preview Server listening on http://localhost:${port}`);
     openBrowser(`http://localhost:${port}`);
   });
 }
 
 createServer();
+
+// Register cleanup on exit
+function registerCleanup() {
+  process.on('exit', clearCache);
+  process.on('SIGINT', () => {
+    clearCache();
+    process.exit(0);
+  });
+  process.on('SIGTERM', () => {
+    clearCache();
+    process.exit(0);
+  });
+  process.on('uncaughtException', (err) => {
+    console.error('Uncaught exception:', err);
+    clearCache();
+    process.exit(1);
+  });
+}
+
+registerCleanup();

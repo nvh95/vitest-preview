@@ -1,6 +1,7 @@
 {
   "name": "@vitest-preview/react-testing-library",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "tsc && vite build",
     "coverage": "vitest run --coverage",

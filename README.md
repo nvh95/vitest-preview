@@ -65,7 +65,7 @@ You need to configure `vitest` to process CSS by:
 // vite.config.js
 export default defineConfig({
   test: {
-+    css: true,
++    css: !process.env.CI, // We usually don't want to process CSS in CI
   },
 });
 
@@ -99,15 +99,6 @@ export default defineConfig({
 "scripts": {
   "vitest-preview": "vitest-preview"
 },
-```
-
-### Update .gitignore
-
-Update your `.gitignore`
-
-```diff
-// .gitignore
-+.vitest-preview
 ```
 
 ## Usage

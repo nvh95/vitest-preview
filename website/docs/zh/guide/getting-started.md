@@ -31,7 +31,7 @@ pnpm add -D vitest-preview
 // vite.config.js
 export default defineConfig({
   test: {
-+    css: true,
+    css: !process.env.CI, // 在CI环境下通常不需要处理 CSS
   },
 });
 
@@ -64,15 +64,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 "scripts": {
   "vitest-preview": "vitest-preview"
 },
-```
-
-### 更新 .gitignore
-
-更新`.gitignore`
-
-```
-// .gitignore
-.vitest-preview
 ```
 
 ## Step 3: 使用
