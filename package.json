@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "test": "CI=true pnpm run  -r --if-present test",
-    "build": "pnpm run -r --if-present build",
+    "build": "pnpm run -r --filter './packages/**' --if-present build",
+    "prepublishOnly": "pnpm run build",
     "prettier": "prettier examples packages --check",
     "prettier:fix": "pnpm run prettier --write"
   },
