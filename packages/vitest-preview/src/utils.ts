@@ -1,4 +1,5 @@
 import fs from 'fs';
+import os from 'os';
 import { CACHE_FOLDER } from './constants';
 
 // Create cache folder if it doesn't exist
@@ -41,4 +42,32 @@ export async function findAvailablePort(
     }
   }
   throw new Error(`No available port between ${start} and ${max}`);
+}
+
+// Pretty print URLs (local + LAN)
+export function getUrls(host: string, port: number) {
+  const protocol = 'http';
+  const isAnyHost =
+    host === '0.0.0.0' ||
+    host === '::' ||
+    host === '::1' ||
+    host === '' ||
+    host === '0';
+  const displayHost = isAnyHost ? 'localhost' : host;
+  const local = `${protocol}://${displayHost}:${port}/`;
+
+  let network: string | null = null;
+  if (isAnyHost) {
+    const nets = os.networkInterfaces();
+    for (const addrs of Object.values(nets)) {
+      for (const a of addrs ?? []) {
+        if (a.family === 'IPv4' && !a.internal) {
+          network = `${protocol}://${a.address}:${port}/`;
+          break;
+        }
+      }
+      if (network) break;
+    }
+  }
+  return { local, network };
 }

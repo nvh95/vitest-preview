@@ -3,16 +3,17 @@ import fs from 'fs';
 import http from 'http';
 import path from 'path';
 import express from 'express';
-import { createServer as createViteServer, ViteDevServer } from 'vite';
+import { createServer as createViteServer } from 'vite';
 import { fileURLToPath } from 'url';
 
 import { openBrowser } from '@vitest-preview/dev-utils';
 
-import { CACHE_FOLDER } from '../constants';
+import { bold, CACHE_FOLDER, green, reset } from '../constants';
 import {
   clearCache,
   createCacheFolderIfNeeded,
   findAvailablePort,
+  getUrls,
 } from '../utils';
 
 const port = process.env.PORT
@@ -37,6 +38,7 @@ async function createServer() {
   const vite = await createViteServer({
     server: {
       middlewareMode: true,
+      host: '0.0.0.0',
       watch: {
         // By default, vite watch the root, but we only need to watch `snapshotHtmlFile`
         // Probably needs to add more in the future
@@ -86,8 +88,13 @@ async function createServer() {
   });
 
   httpServer.listen(port, () => {
-    console.log(`Vitest Preview Server listening on http://localhost:${port}`);
-    openBrowser(`http://localhost:${port}`);
+    const host = (vite.config.server.host || 'localhost').toString();
+    const { local, network } = getUrls(host, port);
+
+    console.log(`${bold}Vitest Preview Server is running${reset}`);
+    console.log(`  Local:   ${green}${local}${reset}`);
+    if (network) console.log(`  Network: ${green}${network}${reset}`);
+    openBrowser(local);
   });
 }
 
