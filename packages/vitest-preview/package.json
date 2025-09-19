@@ -54,7 +54,7 @@
     "@types/express": "^5.0.3",
     "@vitest-preview/dev-utils": "workspace:*",
     "express": "^5.1.0",
-    "vite": "^7.1.5"
+    "vite": "^7.1.6"
   },
   "devDependencies": {
     "@types/node": "^20.19.5",
