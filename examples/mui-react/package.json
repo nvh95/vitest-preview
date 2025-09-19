@@ -1,0 +1,41 @@
+{
+  "name": "@vitest-preview/mui-react",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc && vite build",
+    "coverage": "vitest run --coverage",
+    "dev": "vite",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "vitest-preview": "vitest-preview"
+  },
+  "dependencies": {
+    "@emotion/css": "^11.13.5",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^7.3.2",
+    "@mui/material": "^7.3.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.8.0",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/react-hooks": "^8.0.1",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^5.0.3",
+    "@vitest/ui": "latest",
+    "jsdom": "latest",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.6",
+    "vitest": "latest",
+    "vitest-preview": "workspace:*"
+  },
+  "stackblitz": {
+    "startCommand": "pnpm run test:ui"
+  }
+}
