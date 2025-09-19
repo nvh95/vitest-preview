@@ -29,7 +29,7 @@
     "@vitest/ui": "latest",
     "jsdom": "latest",
     "typescript": "^5.9.2",
-    "vite": "^7.1.5",
+    "vite": "^7.1.6",
     "vitest": "latest",
     "vitest-preview": "workspace:*"
   },
