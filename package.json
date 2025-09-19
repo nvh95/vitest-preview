@@ -14,7 +14,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@changesets/cli": "^2.25.0",
+    "@changesets/cli": "^2.29.7",
     "prettier": "^3.3.2",
     "rimraf": "^5.0.7"
   }
