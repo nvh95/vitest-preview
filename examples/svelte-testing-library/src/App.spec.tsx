@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { render, fireEvent, screen } from '@testing-library/svelte';
 import { debug } from 'vitest-preview';
 import App from './App.svelte';
@@ -10,7 +11,7 @@ describe('Counter Component', () => {
       {
         // Mimic the real DOM
         // See 'src/test/setup.ts' for more details.
-        container: document.querySelector('#app'),
+        baseElement: document.querySelector('#app') as HTMLElement,
       },
     );
     debug();
