@@ -1,7 +1,4 @@
+import { configure } from './configure';
 import { debug } from './preview';
 
-export { debug };
-
-export default {
-  debug,
-};
+export { debug, configure };

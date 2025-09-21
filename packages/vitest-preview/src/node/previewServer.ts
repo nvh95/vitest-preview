@@ -3,8 +3,9 @@ import fs from 'fs';
 import http from 'http';
 import path from 'path';
 import express from 'express';
-import { createServer as createViteServer } from 'vite';
-import { fileURLToPath } from 'url';
+import { JSDOM } from 'jsdom';
+import { createServer as createViteServer, ViteDevServer } from 'vite';
+import { fileURLToPath, pathToFileURL } from 'url';
 
 import { openBrowser } from '@vitest-preview/dev-utils';
 
@@ -15,6 +16,7 @@ import {
   findAvailablePort,
   getUrls,
 } from '../utils';
+import { Config, loadConfig } from '../configure';
 
 const port = process.env.PORT
   ? Number(process.env.PORT)
@@ -31,6 +33,11 @@ fs.writeFileSync(path.join(CACHE_FOLDER, 'index.html'), emptyHtml);
 
 const snapshotHtmlFile = path.join(CACHE_FOLDER, 'index.html');
 
+interface ProcessedCssObj {
+  id: string;
+  css: string;
+}
+
 async function createServer() {
   const app = express();
 
@@ -40,11 +47,6 @@ async function createServer() {
       middlewareMode: true,
       host: '0.0.0.0',
       watch: {
-        // By default, vite watch the root, but we only need to watch `snapshotHtmlFile`
-        // Probably needs to add more in the future
-        ignored: function (filePath: string) {
-          return path.resolve(filePath) !== snapshotHtmlFile;
-        },
         // Helps with atomic write/rename on Linux
         awaitWriteFinish: { stabilityThreshold: 80, pollInterval: 10 },
       },
@@ -74,6 +76,19 @@ async function createServer() {
     try {
       let template = fs.readFileSync(path.resolve(snapshotHtmlFile), 'utf-8');
       template = await vite.transformIndexHtml(url, template);
+      const dom = new JSDOM(template);
+      const { document } = dom.window;
+
+      const processedExternalCss = await processExternalCss(vite);
+      // Inject processedExternalCss to different <style> tags
+      processedExternalCss.forEach((processedCssObj) => {
+        const style = document.createElement('style');
+        style.setAttribute('data-vitest-preview-dev-id', processedCssObj.id);
+        style.textContent = processedCssObj.css;
+        document.head.appendChild(style);
+      });
+
+      template = dom.serialize();
 
       // TODO: We can manipulate the string to modify HTML here. Some actions we can do:
       // - document.title = 'Vitest Preview dashboard' (We can do it by js preview.ts, but it might break some tests)
@@ -96,6 +111,27 @@ async function createServer() {
     if (network) console.log(`  Network: ${green}${network}${reset}`);
     openBrowser(local);
   });
+}
+
+async function processExternalCss(vite: ViteDevServer) {
+  const processedExternalCss = [];
+  const config = loadConfig();
+  if (!config.externalCss) return [];
+
+  for (const cssFile of config.externalCss) {
+    const id = pathToFileURL(path.resolve(cssFile)).href + '?inline';
+    try {
+      const mod = await vite.ssrLoadModule(id);
+      processedExternalCss.push({
+        id,
+        css: mod.default,
+      });
+    } catch (error) {
+      console.error(error);
+      console.error(`Failed to process CSS file: ${cssFile}`);
+    }
+  }
+  return processedExternalCss;
 }
 
 createServer();
