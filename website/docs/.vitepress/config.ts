@@ -121,6 +121,20 @@ function sidebarGuide() {
       ],
     },
     {
+      text: 'APIs',
+      collapsible: true,
+      items: [
+        {
+          text: 'debug',
+          link: '/guide/api/debug',
+        },
+        {
+          text: 'configure',
+          link: '/guide/api/configure',
+        },
+      ],
+    },
+    {
       text: 'Examples',
       collapsible: true,
       items: [
@@ -156,6 +170,20 @@ function sidebarGuideCN() {
           link: '/zh/guide/what-is-vitest-preview',
         },
         { text: '起步', link: '/zh/guide/getting-started' },
+      ],
+    },
+    {
+      text: 'APIs',
+      collapsible: true,
+      items: [
+        {
+          text: 'debug',
+          link: '/zh/guide/api/debug',
+        },
+        {
+          text: 'configure',
+          link: '/zh/guide/api/configure',
+        },
       ],
     },
     {
