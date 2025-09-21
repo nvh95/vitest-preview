@@ -6,6 +6,7 @@
     "vitest-preview": "0.0.1"
   },
   "changesets": [
-    "chubby-bobcats-stop"
+    "chubby-bobcats-stop",
+    "plenty-views-sit"
   ]
 }
