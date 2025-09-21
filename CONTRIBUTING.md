@@ -20,7 +20,7 @@ pnpm changeset pre enter alpha
 
 4. pnpm changeset version
 5. commit
-6. pnpm publish -r
+6. pnpm run changeset publish
 7. Push commit and tag
 8. (Prerelease only) Exit pre mode
 
