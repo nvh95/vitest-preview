@@ -14,12 +14,21 @@ If you are using Jest, you can try [jest-preview](https://github.com/nvh95/jest-
 
 ## Step 1: Installation
 
-```bash
+::: code-group
+
+```bash [npm]
 npm install --save-dev vitest-preview
-# Or
+```
+
+```bash [Yarn]
 yarn add -D vitest-preview
+```
+
+```bash [pnpm]
 pnpm add -D vitest-preview
 ```
+
+:::
 
 ## Step 2: Configuration
 
@@ -83,11 +92,20 @@ describe('App', () => {
 
 Open the **Vitest Preview Dashboard** by running the CLI command (updated in [Configuration](#step-2-configuration)):
 
-```bash
+::: code-group
+
+```bash [npm]
 npm run vitest-preview
-# Or
+```
+
+```bash [Yarn]
 yarn vitest-preview
+```
+
+```bash [pnpm]
 pnpm vitest-preview
 ```
+
+:::
 
 Then execute your tests that contain `debug()`. You will see the UI of your tests at localhost:5006.

@@ -14,12 +14,21 @@
 
 ## Step 1: 安装
 
-```bash
+::: code-group
+
+```bash [npm]
 npm install --save-dev vitest-preview
-# 或者
+```
+
+```bash [Yarn]
 yarn add -D vitest-preview
+```
+
+```bash [pnpm]
 pnpm add -D vitest-preview
 ```
+
+:::
 
 ## Step 2: 配置
 
@@ -83,11 +92,20 @@ describe('App', () => {
 
 执行以下命令来打开 **Vitest Preview 面板** (你可以在 [配置](#step-2-configuration) 中自定义命令):
 
-```bash
+::: code-group
+
+```bash [npm]
 npm run vitest-preview
-# 或者
+```
+
+```bash [Yarn]
 yarn vitest-preview
+```
+
+```bash [pnpm]
 pnpm vitest-preview
 ```
+
+:::
 
 然后，执行你插入了 `debug()` 的测试。 测试的 UI 将在 <a href="http://localhost:5006" target="_blank" rel="noreferrer">localhost:5006</a> 打开。
