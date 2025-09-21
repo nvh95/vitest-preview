@@ -37,6 +37,7 @@ configure({
 
 - You typically want to call `configure` once in your test setup file
 - Make sure paths in `externalCss` are relative to your current working directory (usually the project root)
+- Vitest Preview Dashboard will not refresh automatically if `externalCss` files are changed. You need manually refresh the dashboard to see the changes.
 - It is encounraged to configure external CSS by importing them directly in your test setup file instead. By doing that, your CSS files will be processed by Vite and included in the preview.
 
 ```ts

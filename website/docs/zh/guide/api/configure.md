@@ -37,6 +37,7 @@ configure({
 
 - 你通常希望在测试设置文件中调用一次 `configure`
 - 确保 `externalCss` 中的路径相对于你的当前工作目录（通常是项目根目录）
+- 当 `externalCss` 文件发生变化时，Vitest Preview 面板不会自动刷新。你需要手动刷新面板才能看到变化。
 - 建议直接在测试设置文件中导入外部 CSS。这样，你的 CSS 文件将由 Vite 处理并包含在预览中。
 
 ```ts
