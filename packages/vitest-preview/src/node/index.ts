@@ -16,7 +16,7 @@ import {
   findAvailablePort,
   getUrls,
 } from '../utils';
-import { Config, loadConfig } from '../configure';
+import { loadConfig } from '../configure';
 
 const port = process.env.PORT
   ? Number(process.env.PORT)
@@ -33,12 +33,17 @@ fs.writeFileSync(path.join(CACHE_FOLDER, 'index.html'), emptyHtml);
 
 const snapshotHtmlFile = path.join(CACHE_FOLDER, 'index.html');
 
-interface ProcessedCssObj {
-  id: string;
-  css: string;
+interface ServerOptions {
+  open?: boolean;
+}
+interface ServerInstance {
+  httpServer: http.Server;
+  vite: ViteDevServer;
 }
 
-async function createServer() {
+async function createServer(
+  options: ServerOptions = { open: true },
+): Promise<ServerInstance> {
   const app = express();
 
   const httpServer = http.createServer(app);
@@ -109,8 +114,10 @@ async function createServer() {
     console.log(`${bold}Vitest Preview Server is running${reset}`);
     console.log(`  Local:   ${green}${local}${reset}`);
     if (network) console.log(`  Network: ${green}${network}${reset}`);
-    openBrowser(local);
+    if (options.open) openBrowser(local);
   });
+
+  return { httpServer, vite };
 }
 
 async function processExternalCss(vite: ViteDevServer) {
@@ -134,7 +141,10 @@ async function processExternalCss(vite: ViteDevServer) {
   return processedExternalCss;
 }
 
-createServer();
+function stopServer(serverInstance: ServerInstance): void {
+  serverInstance.httpServer.close();
+  serverInstance.vite.close();
+}
 
 // Register cleanup on exit
 function registerCleanup() {
@@ -154,4 +164,14 @@ function registerCleanup() {
   });
 }
 
-registerCleanup();
+type StartServerOptions = ServerOptions;
+
+async function startServer(options: StartServerOptions = { open: true }) {
+  const serverInstance = await createServer({
+    open: options.open,
+  });
+  return serverInstance;
+}
+
+
+export { startServer, stopServer, registerCleanup  };
