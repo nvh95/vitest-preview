@@ -41,6 +41,7 @@ export default defineConfig({
     sidebar: {
       '/guide/': sidebarGuide(),
       '/zh/guide/': sidebarGuideCN(),
+      '/vi/guide/': sidebarGuideVI(),
     },
 
     editLink: {
@@ -101,6 +102,10 @@ function nav() {
         {
           text: '中文',
           link: '/zh/',
+        },
+        {
+          text: 'Tiếng Việt',
+          link: '/vi/',
         },
       ],
     },
@@ -177,6 +182,44 @@ function sidebarGuideCN() {
         {
           text: '常见问题',
           link: '/zh/guide/faq',
+        },
+      ],
+    },
+  ];
+}
+
+function sidebarGuideVI() {
+  return [
+    {
+      text: 'Giới thiệu',
+      collapsible: true,
+      items: [
+        {
+          text: 'Vitest Preview là gì?',
+          link: '/vi/guide/what-is-vitest-preview',
+        },
+        { text: 'Bắt đầu', link: '/vi/guide/getting-started' },
+      ],
+    },
+    {
+      text: 'Ví dụ',
+      collapsible: true,
+      items: [
+        { text: 'React Testing Library', link: '/vi/guide/react-testing-library' },
+        { text: '@vue/test-utils', link: '/vi/guide/vue-test-utils' },
+        {
+          text: 'Svelte Testing Library',
+          link: '/vi/guide/svelte-testing-library',
+        },
+      ],
+    },
+    {
+      text: 'Khác',
+      collapsible: true,
+      items: [
+        {
+          text: 'Câu hỏi thường gặp',
+          link: '/vi/guide/faq',
         },
       ],
     },
