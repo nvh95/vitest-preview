@@ -1,0 +1,11 @@
+{
+  "mode": "pre",
+  "tag": "alpha",
+  "initialVersions": {
+    "@vitest-preview/dev-utils": "0.0.2",
+    "vitest-preview": "0.0.2"
+  },
+  "changesets": [
+    "every-drinks-camp"
+  ]
+}
