@@ -1,6 +1,6 @@
 {
   "name": "vitest-preview",
-  "version": "0.0.2-alpha.1",
+  "version": "0.0.2",
   "description": "Visual Debugging Experience for Vitest 🧪🖼⚡️",
   "type": "module",
   "exports": {
