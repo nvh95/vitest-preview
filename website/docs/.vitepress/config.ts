@@ -132,6 +132,10 @@ function sidebarGuide() {
           text: 'configure',
           link: '/guide/api/configure',
         },
+        {
+          text: 'Vitest Preview Dashboard',
+          link: '/guide/api/vitest-preview-dashboard',
+        },
       ],
     },
     {
@@ -183,6 +187,10 @@ function sidebarGuideCN() {
         {
           text: 'configure',
           link: '/zh/guide/api/configure',
+        },
+        {
+          text: 'Vitest Preview Dashboard',
+          link: '/zh/guide/api/vitest-preview-dashboard',
         },
       ],
     },

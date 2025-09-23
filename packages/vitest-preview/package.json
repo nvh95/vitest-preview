@@ -10,6 +10,10 @@
     },
     "./node/previewServer": {
       "import": "./dist/node/previewServer.js"
+    },
+    "./node": {
+      "import": "./dist/node/index.js",
+      "types": "./dist/node/index.d.ts"
     }
   },
   "types": "dist/index.d.ts",
@@ -23,6 +27,7 @@
     "copy": "mkdir -p dist/node && cp src/node/empty.html dist/node/empty.html",
     "build": "rimraf dist && pnpm copy && pkgroll",
     "build:watch": "rimraf dist && pnpm copy && pkgroll --watch",
+    "test": "vitest run tests/e2e.test.ts",
     "prepublishOnly": "pnpm run build",
     "publish:alpha": "pnpm publish --tag alpha",
     "publish:latest": "pnpm publish"
@@ -60,6 +65,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.19.5",
-    "pkgroll": "^2.15.4"
+    "pkgroll": "^2.15.4",
+    "vitest": "^3.2.4"
   }
 }
