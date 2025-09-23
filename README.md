@@ -20,7 +20,7 @@ Debug your Vitest tests. Effortlessly. 🧪🖼⚡️
 
 <!-- prettier-ignore-start -->
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 <!-- prettier-ignore-end -->
 
@@ -160,6 +160,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://blog.knappi.org"><img src="https://avatars.githubusercontent.com/u/636150?v=4?s=100" width="100px;" alt="Nils Knappmeier"/><br /><sub><b>Nils Knappmeier</b></sub></a><br /><a href="https://github.com/nvh95/vitest-preview/commits?author=nknapp" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/tarjei"><img src="https://avatars.githubusercontent.com/u/211263?v=4?s=100" width="100px;" alt="Tarjei Huse"/><br /><sub><b>Tarjei Huse</b></sub></a><br /><a href="#ideas-tarjei" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://www.truongnt.com"><img src="https://avatars.githubusercontent.com/u/36792554?v=4?s=100" width="100px;" alt="Truong Nguyen"/><br /><sub><b>Truong Nguyen</b></sub></a><br /><a href="https://github.com/nvh95/vitest-preview/pulls?q=is%3Apr+reviewed-by%3Antt261298" title="Reviewed Pull Requests">👀</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/heath-freenome"><img src="https://avatars.githubusercontent.com/u/51679588?v=4?s=100" width="100px;" alt="Heath C"/><br /><sub><b>Heath C</b></sub></a><br /><a href="https://github.com/nvh95/vitest-preview/issues?q=author%3Aheath-freenome" title="Bug reports">🐛</a></td>
     </tr>
   </tbody>
 </table>
