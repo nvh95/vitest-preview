@@ -50,6 +50,15 @@
       "contributions": [
         "ideas"
       ]
+    },
+    {
+      "login": "ntt261298",
+      "name": "Truong Nguyen",
+      "avatar_url": "https://avatars.githubusercontent.com/u/36792554?v=4",
+      "profile": "https://www.truongnt.com",
+      "contributions": [
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 7,
