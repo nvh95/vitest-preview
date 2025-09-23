@@ -13,7 +13,7 @@ import '../global.css';
 
 2. The HTML structure in tests is different. You need to update the `jsdom` to match the real UI. You can do that by mutating the DOM in the setup file, or pass some options to `render` function. See an example at:
 
-- https://github.com/nvh95/vitest-preview/tree/main/examples/svelte-testing-library#why-does-the-preview-ui-does-not-look-the-same-as-the-real-app-ui
+- https://github.com/nvh95/vitest-preview/tree/main/examples/svelte-testing-library#why-doesnt-the-preview-ui-look-the-same-as-the-real-app-ui
 
 ## The preview is blank when I use with @vue/test-utils
 
