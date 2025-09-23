@@ -59,6 +59,15 @@
       "contributions": [
         "review"
       ]
+    },
+    {
+      "login": "heath-freenome",
+      "name": "Heath C",
+      "avatar_url": "https://avatars.githubusercontent.com/u/51679588?v=4",
+      "profile": "https://github.com/heath-freenome",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
