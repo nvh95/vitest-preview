@@ -6,6 +6,7 @@
     "vitest-preview": "0.0.2"
   },
   "changesets": [
-    "every-drinks-camp"
+    "every-drinks-camp",
+    "proud-sites-report"
   ]
 }
