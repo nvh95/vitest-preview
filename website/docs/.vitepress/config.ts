@@ -118,6 +118,7 @@ function sidebarGuide() {
           link: '/guide/what-is-vitest-preview',
         },
         { text: 'Getting Started', link: '/guide/getting-started' },
+        { text: 'Automatic Mode', link: '/guide/automatic-mode' },
       ],
     },
     {
