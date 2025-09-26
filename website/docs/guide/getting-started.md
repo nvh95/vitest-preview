@@ -108,4 +108,10 @@ pnpm vitest-preview
 
 :::
 
-Then execute your tests that contain `debug()`. You will see the UI of your tests at localhost:5006.
+Then execute your tests that contain `debug()`. You will see the UI of your tests at http://localhost:5006.
+
+## (Optional) Step 4: Automatic Mode
+
+You can use automatic mode to automatically preview the UI of failed tests without manually calling `debug()` in each test.
+
+Read more at [Automatic Mode](/guide/automatic-mode).
