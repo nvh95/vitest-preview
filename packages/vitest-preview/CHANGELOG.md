@@ -1,5 +1,13 @@
 # vitest-preview
 
+## 0.0.3-alpha.2
+
+### Patch Changes
+
+- automatic mode
+- Updated dependencies
+  - @vitest-preview/dev-utils@0.0.3-alpha.2
+
 ## 0.0.3-alpha.1
 
 ### Patch Changes
