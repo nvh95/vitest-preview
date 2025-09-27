@@ -10,12 +10,12 @@ Vitest provides a powerful test context API that allows you to hook into the tes
 
 ### Step 1: Disable Automatic Cleanup
 
-If you're using Testing Library, you need to disable automatic cleanup first. Otherwise, the DOM will be cleaned up before you can capture it with `debug()`.
+If you're using Testing Library, you need to disable [automatic cleanup](https://testing-library.com/docs/react-testing-library/setup/#auto-cleanup-in-vitest) first. Otherwise, the DOM will be cleaned up before you can capture it with `debug()`.
 
 ```diff
-// vitest.config.js
+// vitest.config.ts/ vite.config.ts
 /// <reference types="vitest/config" />
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -28,7 +28,7 @@ export default defineConfig({
 Also, make sure your test setup file does not perform automatic cleanup
 
 ```diff
-// setupFiles.js or setupFiles.ts
+// setupFiles.ts
 import { cleanup } from '@testing-library/react'
 import { afterEach } from 'vitest'
 
@@ -42,7 +42,7 @@ afterEach(() => {
 Add the following code to your test setup file (e.g., `src/test/setup.ts` or the file specified in your Vitest config's `setupFiles`):
 
 ```js
-// setupFiles.js/ setupFiles.ts
+// setupFiles.ts
 import { beforeEach } from 'vitest';
 import { cleanup } from '@testing-library/react';
 import { debug } from 'vitest-preview';
@@ -50,9 +50,10 @@ import { debug } from 'vitest-preview';
 beforeEach((ctx) => {
   ctx.onTestFinished(({ task }) => {
     if (task?.result?.state === 'fail') {
+      // Preview the failed test in the Vitest Preview Dashboard
       debug();
     }
-    // Still perform cleanup, but after capturing the DOM state
+    // Still perform cleanup, but after capturing the DOM state. It depends on which cleanup strategy you use.
     cleanup();
   });
 });
@@ -76,17 +77,20 @@ Vitest allows you to extend the test API with custom fixtures. This approach let
 
 Create or modify your test utilities file to extend the test API:
 
-```js
-// utils/test-utils.js
+```ts
+// utils/vitest-utils.ts
 import { test as baseTest } from 'vitest';
 import { debug } from 'vitest-preview';
 
+// You can re-export all exports from vitest
+export * from 'vitest';
+
 // Extend the test API with automatic debugging
-export const test = baseTest.extend({
+const test = baseTest.extend({
   automaticDebugOnFail: [
     async ({ task }, use) => {
       await use(undefined);
-      if (task.result?.state === 'fail' && !process.env.CI) {
+      if (task.result?.state === 'fail') {
         debug();
       }
     },
@@ -94,18 +98,18 @@ export const test = baseTest.extend({
   ],
 });
 
-// You can also extend the describe, it, etc. if needed
-// TODO: Test export * from baseTest / export baseTest
-export const { describe, expect } = baseTest;
+const it = test;
+export { test, it };
 ```
 
 ### Step 2: Use the Extended Test API
 
 In your test files, import and use the extended test API instead of the one from Vitest:
 
-```js
-// Example.test.js or Example.test.tsx
-import { test, describe, expect } from './utils/test-utils';
+```ts
+// Example.test.tsx
+// IMPORT THE EXTENDED TEST API INSTEAD OF THE ONE FROM VITEST
+import { test, describe, expect } from './utils/vitest-utils';
 import { render, screen, userEvent } from '@testing-library/react';
 
 // `debug()` will be called automatically if the test fails
@@ -141,7 +145,7 @@ Both approaches have their merits:
 Here's a complete example of implementing automatic debugging with the first approach:
 
 ```js
-// setup.js or setup.ts
+// setup.ts
 import { beforeEach } from 'vitest';
 import { cleanup } from '@testing-library/react';
 import { debug } from 'vitest-preview';
