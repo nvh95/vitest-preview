@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { CACHE_FOLDER } from './constants';
-import { createCacheFolderIfNeeded } from './utils';
+import { createCacheFolderIfNeeded, wait } from './utils';
 
 let observer: MutationObserver | null = null;
 
@@ -48,12 +48,22 @@ export function debug(): void {
 /**
  * Watches for changes in the document and automatically calls debug() when changes occur.
  * Uses MutationObserver to detect DOM mutations.
- * 
+ *
  * @param options - Configuration options for the observer
- * @param options.throttle - Time in milliseconds to throttle debug calls (default: 100)
+ * @param options.throttle - Time in milliseconds to throttle debug calls (default: 50). Set to null to disable throttling.
+ * @param options.start - Whether to call debug immediately when watch is started (default: true)
+ * @param options.end - Whether to call debug one final time before stopping watching (default: true)
+ * @param options.debug - Whether to log the total number of debug calls to the console (default: false)
  * @returns A function to stop watching
  */
-export function watch(options: { throttle?: number } = {}): () => void {
+export function watch(
+  options: {
+    throttle?: number | null;
+    start?: boolean;
+    end?: boolean;
+    debug?: boolean;
+  } = {},
+): () => void {
   // Stop any existing observer
   if (observer) {
     observer.disconnect();
@@ -61,17 +71,33 @@ export function watch(options: { throttle?: number } = {}): () => void {
   }
 
   // Set up throttling to avoid too many debug() calls
-  const throttleTime = options.throttle ?? 100;
+  const throttleTime = options.throttle ?? 50;
+  const start = options.start ?? true;
+  const end = options.end ?? true;
+  const debugFlag = options.debug ?? false;
   let timeout: ReturnType<typeof setTimeout> | null = null;
-  
+
+  let totalCalls = 0;
+  if (start) {
+    debug();
+    totalCalls++;
+  }
+
+  let lastCall = 0;
   // Create a new observer
   observer = new MutationObserver(() => {
     // Throttle debug calls
-    if (timeout === null) {
-      timeout = setTimeout(() => {
+    if (throttleTime === null) {
+      debug();
+      totalCalls++;
+      return;
+    } else {
+      const now = Date.now();
+      if (now - lastCall > throttleTime) {
         debug();
-        timeout = null;
-      }, throttleTime);
+        lastCall = now;
+        totalCalls++;
+      }
     }
   });
 
@@ -85,6 +111,14 @@ export function watch(options: { throttle?: number } = {}): () => void {
 
   // Return a function to stop watching
   return () => {
+    // Capture one final state if requested
+    if (end) {
+      debug();
+    }
+    if (debugFlag) {
+      console.log('totalCalls', ++totalCalls);
+    }
+
     if (observer) {
       observer.disconnect();
       observer = null;

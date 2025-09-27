@@ -10,7 +10,7 @@ import { watch } from 'vitest-preview';
 let stopWatching;
 // 开始监视 DOM 变化
 beforeEach(() => {
-  stopWatching = watch({ throttle: 200 });
+  stopWatching = watch();
 });
 
 // 完成后停止监视
@@ -24,13 +24,21 @@ afterEach(() => {
 ## API
 
 ```ts
-function watch(options?: { throttle?: number }): () => void;
+function watch(options?: {
+  throttle?: number | null;
+  start?: boolean;
+  end?: boolean;
+  debug?: boolean;
+}): () => void;
 ```
 
 ### 参数
 
 - `options` (可选): watch 函数的配置选项
-  - `throttle` (可选): 节流 debug 调用的时间（毫秒），默认值: 100
+  - `throttle` (可选): 节流 debug 调用的时间（毫秒），默认值: 50。设置为 `null` 可禁用节流。
+  - `start` (可选): 是否在开始监视时立即调用 debug（默认值：true）
+  - `end` (可选): 是否在停止监视前最后调用一次 debug（默认值：true）
+  - `debug` (可选): 是否将 debug 调用的总次数输出到控制台（默认值：false）
 
 ### 返回值
 
@@ -46,7 +54,9 @@ import Counter from './Counter';
 
 let stopWatching;
 beforeEach(() => {
-  stopWatching = watch();
+  stopWatching = watch({
+    throttle: 50, // 每50毫秒节流一次debug调用
+  });
 });
 
 afterEach(() => {
@@ -73,8 +83,10 @@ test('计数器递增', async () => {
 2. 您不想在整个测试中手动添加 `debug()` 调用
 3. 您正在调试具有多次 DOM 更新的复杂测试
 
-## 性能考虑
+## 注意事项
 
-由于 `watch` 使用 MutationObserver 监视 DOM 变化，如果与非常频繁的 DOM 更新一起使用，可能会影响性能。`throttle` 选项通过限制调用 `debug()` 的频率来缓解这个问题。
+由于 Vitest 运行得很快，DOM 变化可能快到浏览器跟不上。
 
-对于具有极其频繁 DOM 更新的测试，考虑在特定点使用手动 `debug()` 调用。
+作者进行了一个测试，在 10000 次 DOM 更新中，Vitest Preview 可以在 Vitest Preview Dashboard 上捕获 6 次 DOM 变化。
+
+如果您遇到性能问题，可以使用 `throttle` 选项来节流 debug 调用。

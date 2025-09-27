@@ -126,13 +126,19 @@ Use `watch()` to automatically capture DOM changes without manually calling `deb
 ```diff
 +import { watch } from 'vitest-preview';
 
-describe('App', async () => {
-  it('should work as expected', () => {
-+    // Start watching for DOM changes
-+    const stopWatching = watch());
+describe('App', () => {
++  let stopWatching;
++  beforeEach(() => {
++    stopWatching = watch();
++  });
++  afterEach(() => {
++    stopWatching();
++  });
+
+  it('should work as expected', async () => {
     render(<App />);
     await userEvent.click(screen.getByText('Increment'));
-+    stopWatching();
+    // DOM changes are automatically captured
   });
 });
 ```

@@ -13,6 +13,7 @@ program.description(
   chalk.bold('Vitest Preview - Visual Debugging Experience for Vitest 🧪🖼⚡️'),
 );
 
+// TODO: To add argument --open -o (default to true) to open browser
 // Default command (no arguments) - start the server
 program.action(() => {
   console.log(chalk.bold('\nStarting Vitest Preview Server...'));
