@@ -9,7 +9,7 @@ This guide shows two approaches to set up **Automatic Mode**, which automaticall
 You can run the following command to set up **Automatic Mode** with minimal effort:
 
 ```bash
-vitest-preview setup automatic-mode
+vitest-preview setup --automaticMode
 ```
 
 However, it is important to carefully review this guide to ensure that configure Automatic Mode is configured properly for your specific setup.
