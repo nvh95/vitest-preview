@@ -19,21 +19,6 @@ import {
 } from '../utils';
 import { loadConfig } from '../configure';
 
-const port = process.env.PORT
-  ? Number(process.env.PORT)
-  : await findAvailablePort(5006);
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-createCacheFolderIfNeeded();
-const emptyHtml = fs.readFileSync(
-  path.resolve(__dirname, 'empty.html'),
-  'utf-8',
-);
-fs.writeFileSync(path.join(CACHE_FOLDER, 'index.html'), emptyHtml);
-
-const snapshotHtmlFile = path.join(CACHE_FOLDER, 'index.html');
-
 interface ServerOptions {
   open?: boolean;
 }
@@ -45,6 +30,21 @@ interface ServerInstance {
 async function createServer(
   options: ServerOptions = { open: true },
 ): Promise<ServerInstance> {
+  const port = process.env.PORT
+    ? Number(process.env.PORT)
+    : await findAvailablePort(5006);
+
+  const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+  createCacheFolderIfNeeded();
+  const emptyHtml = fs.readFileSync(
+    path.resolve(__dirname, 'empty.html'),
+    'utf-8',
+  );
+  fs.writeFileSync(path.join(CACHE_FOLDER, 'index.html'), emptyHtml);
+
+  const snapshotHtmlFile = path.join(CACHE_FOLDER, 'index.html');
+
   const app = express();
 
   const httpServer = http.createServer(app);
@@ -174,5 +174,4 @@ async function startServer(options: StartServerOptions = { open: true }) {
   return serverInstance;
 }
 
-
-export { startServer, stopServer, registerCleanup  };
+export { startServer, stopServer, registerCleanup };
