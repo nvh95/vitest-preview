@@ -9,7 +9,8 @@ import { fileURLToPath, pathToFileURL } from 'url';
 
 import { openBrowser } from '@vitest-preview/dev-utils';
 
-import { bold, CACHE_FOLDER, green, reset } from '../constants';
+import { CACHE_FOLDER } from '../constants';
+import chalk from 'chalk';
 import {
   clearCache,
   createCacheFolderIfNeeded,
@@ -17,21 +18,6 @@ import {
   getUrls,
 } from '../utils';
 import { loadConfig } from '../configure';
-
-const port = process.env.PORT
-  ? Number(process.env.PORT)
-  : await findAvailablePort(5006);
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-createCacheFolderIfNeeded();
-const emptyHtml = fs.readFileSync(
-  path.resolve(__dirname, 'empty.html'),
-  'utf-8',
-);
-fs.writeFileSync(path.join(CACHE_FOLDER, 'index.html'), emptyHtml);
-
-const snapshotHtmlFile = path.join(CACHE_FOLDER, 'index.html');
 
 interface ServerOptions {
   open?: boolean;
@@ -44,6 +30,21 @@ interface ServerInstance {
 async function createServer(
   options: ServerOptions = { open: true },
 ): Promise<ServerInstance> {
+  const port = process.env.PORT
+    ? Number(process.env.PORT)
+    : await findAvailablePort(5006);
+
+  const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+  createCacheFolderIfNeeded();
+  const emptyHtml = fs.readFileSync(
+    path.resolve(__dirname, 'empty.html'),
+    'utf-8',
+  );
+  fs.writeFileSync(path.join(CACHE_FOLDER, 'index.html'), emptyHtml);
+
+  const snapshotHtmlFile = path.join(CACHE_FOLDER, 'index.html');
+
   const app = express();
 
   const httpServer = http.createServer(app);
@@ -111,9 +112,9 @@ async function createServer(
     const host = (vite.config.server.host || 'localhost').toString();
     const { local, network } = getUrls(host, port);
 
-    console.log(`${bold}Vitest Preview Server is running${reset}`);
-    console.log(`  Local:   ${green}${local}${reset}`);
-    if (network) console.log(`  Network: ${green}${network}${reset}`);
+    console.log(chalk.bold('Vitest Preview Server is running'));
+    console.log(`  Local:   ${chalk.green(local)}`);
+    if (network) console.log(`  Network: ${chalk.green(network)}`);
     if (options.open) openBrowser(local);
   });
 
@@ -135,7 +136,7 @@ async function processExternalCss(vite: ViteDevServer) {
       });
     } catch (error) {
       console.error(error);
-      console.error(`Failed to process CSS file: ${cssFile}`);
+      console.error(chalk.red(`Failed to process CSS file: ${cssFile}`));
     }
   }
   return processedExternalCss;
@@ -158,7 +159,7 @@ function registerCleanup() {
     process.exit(0);
   });
   process.on('uncaughtException', (err) => {
-    console.error('Uncaught exception:', err);
+    console.error(chalk.red('Uncaught exception:'), err);
     clearCache();
     process.exit(1);
   });
@@ -173,5 +174,4 @@ async function startServer(options: StartServerOptions = { open: true }) {
   return serverInstance;
 }
 
-
-export { startServer, stopServer, registerCleanup  };
+export { startServer, stopServer, registerCleanup };

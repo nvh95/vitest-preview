@@ -6,7 +6,6 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   plugins: [react()],
   test: {
-    globals: true,
     environment: 'jsdom',
     setupFiles: './src/test/setup.ts',
     // Need to enable this to use with vitest-preview
