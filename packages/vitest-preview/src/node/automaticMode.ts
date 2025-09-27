@@ -440,6 +440,9 @@ beforeEach((ctx) => {
 }
 
 async function createOrUpdateSetupFile(filePath: string) {
+  const filePathContent = fs.existsSync(filePath)
+    ? fs.readFileSync(filePath, 'utf-8')
+    : '';
   let content = `// Vitest setup file created by vitest-preview automatic mode setup
 import { beforeEach } from 'vitest';
 import { cleanup } from '@testing-library/react';
@@ -464,14 +467,19 @@ beforeEach((ctx) => {
 });
 `;
 
+  // Re-run would not update the file if it already exists
+  if (filePathContent.includes(content)) {
+    return;
+  }
+
   // Create the directory if it doesn't exist
   const setupDir = path.dirname(filePath);
   if (!fs.existsSync(setupDir)) {
     fs.mkdirSync(setupDir, { recursive: true });
   }
 
-  if (fs.existsSync(filePath)) {
-    content = fs.readFileSync(filePath, 'utf-8') + `\n` + content;
+  if (filePathContent) {
+    content = filePathContent + `\n` + content;
   }
 
   fs.writeFileSync(filePath, content);
