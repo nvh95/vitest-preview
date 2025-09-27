@@ -1,5 +1,17 @@
 # vitest-preview
 
+## 0.0.3
+
+### Patch Changes
+
+- 2d0be98: fix readme on npmjs.com
+- 1f65170: swap readme
+- b500133: automatic mode
+- Updated dependencies [2d0be98]
+- Updated dependencies [b500133]
+- Updated dependencies [1f65170]
+  - @vitest-preview/dev-utils@0.0.3
+
 ## 0.0.3-alpha.2
 
 ### Patch Changes
