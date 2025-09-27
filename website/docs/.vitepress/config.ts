@@ -65,6 +65,7 @@ export default defineConfig({
     //   indexName: 'vitest-preview',
     // },
   },
+  ignoreDeadLinks: 'localhostLinks',
 });
 
 function nav() {
