@@ -375,7 +375,7 @@ async function addOnTestFinishedHook(setupFilePath: string) {
     const hasDebug =
       content.includes('debug') && content.includes("from 'vitest-preview'");
     const hasTestingLibraryJestDom = content.includes(
-      "from '@testing-library/jest-dom'",
+      "from '@testing-library/jest-dom/vitest'",
     );
 
     // Prepare imports to add at the top of the file
@@ -386,7 +386,7 @@ async function addOnTestFinishedHook(setupFilePath: string) {
       importsToAdd.push("import { cleanup } from '@testing-library/react';");
     if (!hasDebug) importsToAdd.push("import { debug } from 'vitest-preview';");
     if (!hasTestingLibraryJestDom)
-      importsToAdd.push("import '@testing-library/jest-dom';");
+      importsToAdd.push("import '@testing-library/jest-dom/vitest';");
 
     // Add imports if needed
     if (importsToAdd.length > 0) {
