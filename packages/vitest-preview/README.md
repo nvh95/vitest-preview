@@ -43,6 +43,7 @@ When writing tests, we usually have to debug by reading the cryptic HTML output 
 
 - 👀 Visualize your testing UI in an external browser in milliseconds.
 - 🔄 Auto reloads the browser when `debug()` is executed.
+- 🔍 Automatic debugging with `watch()` function that observes DOM changes.
 - 💅 Fully support CSS
 - 🌄 Support viewing images.
 
@@ -103,6 +104,8 @@ export default defineConfig({
 
 ## Usage
 
+### Manual Debugging
+
 Put `debug()` wherever you want to see the UI in your tests.
 
 ```diff
@@ -112,6 +115,24 @@ describe('App', () => {
   it('should work as expected', () => {
     render(<App />);
 +    debug();
+  });
+});
+```
+
+### Automatic Debugging with `watch()`
+
+Use `watch()` to automatically capture DOM changes without manually calling `debug()`.
+
+```diff
++import { watch } from 'vitest-preview';
+
+describe('App', async () => {
+  it('should work as expected', () => {
++    // Start watching for DOM changes
++    const stopWatching = watch());
+    render(<App />);
+    await userEvent.click(screen.getByText('Increment'));
++    stopWatching();
   });
 });
 ```

@@ -3,6 +3,8 @@ import path from 'path';
 import { CACHE_FOLDER } from './constants';
 import { createCacheFolderIfNeeded } from './utils';
 
+let observer: MutationObserver | null = null;
+
 /**
  * Materialize CSSOM-inserted rules into textContent for <style> tags
  * that currently look empty.
@@ -41,4 +43,55 @@ export function debug(): void {
     path.join(CACHE_FOLDER, 'index.html'),
     document.documentElement.outerHTML,
   );
+}
+
+/**
+ * Watches for changes in the document and automatically calls debug() when changes occur.
+ * Uses MutationObserver to detect DOM mutations.
+ * 
+ * @param options - Configuration options for the observer
+ * @param options.throttle - Time in milliseconds to throttle debug calls (default: 100)
+ * @returns A function to stop watching
+ */
+export function watch(options: { throttle?: number } = {}): () => void {
+  // Stop any existing observer
+  if (observer) {
+    observer.disconnect();
+    observer = null;
+  }
+
+  // Set up throttling to avoid too many debug() calls
+  const throttleTime = options.throttle ?? 100;
+  let timeout: ReturnType<typeof setTimeout> | null = null;
+  
+  // Create a new observer
+  observer = new MutationObserver(() => {
+    // Throttle debug calls
+    if (timeout === null) {
+      timeout = setTimeout(() => {
+        debug();
+        timeout = null;
+      }, throttleTime);
+    }
+  });
+
+  // Start observing the document for all types of mutations
+  observer.observe(document, {
+    attributes: true,
+    childList: true,
+    subtree: true,
+    characterData: true,
+  });
+
+  // Return a function to stop watching
+  return () => {
+    if (observer) {
+      observer.disconnect();
+      observer = null;
+    }
+    if (timeout !== null) {
+      clearTimeout(timeout);
+      timeout = null;
+    }
+  };
 }

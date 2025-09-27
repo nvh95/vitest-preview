@@ -131,6 +131,10 @@ function sidebarGuide() {
           link: '/guide/api/debug',
         },
         {
+          text: 'watch',
+          link: '/guide/api/watch',
+        },
+        {
           text: 'configure',
           link: '/guide/api/configure',
         },
@@ -185,6 +189,10 @@ function sidebarGuideCN() {
         {
           text: 'debug',
           link: '/zh/guide/api/debug',
+        },
+        {
+          text: 'watch',
+          link: '/zh/guide/api/watch',
         },
         {
           text: 'configure',

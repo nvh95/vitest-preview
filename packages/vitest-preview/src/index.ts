@@ -1,4 +1,4 @@
 import { configure } from './configure';
-import { debug } from './preview';
+import { debug, watch } from './preview';
 
-export { debug, configure };
+export { debug, configure, watch };
