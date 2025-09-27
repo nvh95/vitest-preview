@@ -2,7 +2,17 @@
 
 While manually calling `debug()` in your tests gives you precise control over when to capture the DOM state, sometimes you want to automatically capture the UI state when a test fails. This can be especially helpful for debugging test failures in CI environments or when running large test suites.
 
-This guide shows two approaches to automatically preview the UI of failed tests without manually calling `debug()` in each test.
+This guide shows two approaches to set up **Automatic Mode**, which automatically previews the UI of failed tests without the need to manually call `debug()` in each test.
+
+## Configure Automatic Mode using the CLI
+
+You can run the following command to set up **Automatic Mode** with minimal effort:
+
+```bash
+vitest-preview setup automatic-mode
+```
+
+However, it is important to carefully review this guide to ensure that configure Automatic Mode is configured properly for your specific setup.
 
 ## Approach 1: Using `onTestFinished` Hook (Recommended)
 
@@ -207,13 +217,3 @@ You might wonder why Vitest Preview doesn't offer a simple configuration option 
 2. **Test API Limitations**: The `test` API imported from `vitest` is immutable, which means we can't easily extend it globally without requiring changes to import statements.
 
 These challenges led us to provide documentation for multiple approaches, allowing users to choose the one that best fits their project structure and preferences.
-
-## Future Considerations
-
-In the future, we plan to provide a CLI command to help set up automatic mode with minimal effort:
-
-```bash
-vitest-preview setup automatic-mode
-```
-
-This command would analyze your project structure and testing setup, then configure your preferred automatic debugging approach to your specific environment.
