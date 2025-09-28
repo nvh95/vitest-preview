@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitepress';
+import { defineConfig, DefaultTheme } from 'vitepress';
 import { version } from '../../../packages/vitest-preview/package.json';
 
 export default defineConfig({
@@ -108,23 +108,39 @@ function nav() {
   ];
 }
 
-function sidebarGuide() {
+function sidebarGuide(): DefaultTheme.SidebarItem[] {
   return [
     {
       text: 'Introduction',
-      collapsible: true,
+      collapsed: false,
       items: [
         {
           text: 'What is Vitest Preview?',
           link: '/guide/what-is-vitest-preview',
         },
         { text: 'Getting Started', link: '/guide/getting-started' },
-        { text: 'Automatic Mode', link: '/guide/automatic-mode' },
+      ],
+    },
+    {
+      text: 'Automatic Mode',
+      items: [
+        {
+          text: 'What is Automatic Mode?',
+          link: '/guide/what-is-automatic-mode',
+        },
+        {
+          text: 'Auto Preview on Failed Tests',
+          link: '/guide/auto-preview-on-failed-tests',
+        },
+        {
+          text: 'Auto Preview on DOM Changes',
+          link: '/guide/auto-preview-on-dom-changes',
+        },
       ],
     },
     {
       text: 'APIs',
-      collapsible: true,
+      collapsed: false,
       items: [
         {
           text: 'debug',
@@ -146,7 +162,7 @@ function sidebarGuide() {
     },
     {
       text: 'Examples',
-      collapsible: true,
+      collapsed: false,
       items: [
         { text: 'React Testing Library', link: '/guide/react-testing-library' },
         { text: '@vue/test-utils', link: '/guide/vue-test-utils' },
@@ -158,7 +174,7 @@ function sidebarGuide() {
     },
     {
       text: 'Others',
-      collapsible: true,
+      collapsed: false,
       items: [
         {
           text: 'Frequently Asked Questions',
