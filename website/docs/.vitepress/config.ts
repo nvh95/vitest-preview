@@ -196,6 +196,25 @@ function sidebarGuideCN() {
           link: '/zh/guide/what-is-vitest-preview',
         },
         { text: '起步', link: '/zh/guide/getting-started' },
+        { text: '自动模式', link: '/zh/guide/automatic-mode' },
+      ],
+    },
+    {
+      text: '自动模式',
+      collapsible: true,
+      items: [
+        {
+          text: '什么是自动模式？',
+          link: '/zh/guide/what-is-automatic-mode',
+        },
+        {
+          text: '测试失败时自动预览',
+          link: '/zh/guide/auto-preview-on-failed-tests',
+        },
+        {
+          text: 'DOM 变化时自动预览',
+          link: '/zh/guide/auto-preview-on-dom-changes',
+        },
       ],
     },
     {
