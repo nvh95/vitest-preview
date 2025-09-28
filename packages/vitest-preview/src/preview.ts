@@ -1,7 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 import { CACHE_FOLDER } from './constants';
-import { createCacheFolderIfNeeded } from './utils';
+import { createCacheFolderIfNeeded, wait } from './utils';
+
+let observer: MutationObserver | null = null;
 
 /**
  * Materialize CSSOM-inserted rules into textContent for <style> tags
@@ -41,4 +43,89 @@ export function debug(): void {
     path.join(CACHE_FOLDER, 'index.html'),
     document.documentElement.outerHTML,
   );
+}
+
+/**
+ * Watches for changes in the document and automatically calls debug() when changes occur.
+ * Uses MutationObserver to detect DOM mutations.
+ *
+ * @param options - Configuration options for the observer
+ * @param options.throttle - Time in milliseconds to throttle debug calls (default: 50). Set to null to disable throttling.
+ * @param options.start - Whether to call debug immediately when watch is started (default: true)
+ * @param options.end - Whether to call debug one final time before stopping watching (default: true)
+ * @param options.debug - Whether to log the total number of debug calls to the console (default: false)
+ * @returns A function to stop watching
+ */
+export function watch(
+  options: {
+    throttle?: number | null;
+    start?: boolean;
+    end?: boolean;
+    debug?: boolean;
+  } = {},
+): () => void {
+  // Stop any existing observer
+  if (observer) {
+    observer.disconnect();
+    observer = null;
+  }
+
+  // Set up throttling to avoid too many debug() calls
+  const throttleTime = options.throttle === undefined ? 50 : options.throttle;
+  const start = options.start ?? true;
+  const end = options.end ?? true;
+  const debugFlag = options.debug ?? false;
+  let timeout: ReturnType<typeof setTimeout> | null = null;
+
+  let totalCalls = 0;
+  if (start) {
+    debug();
+    totalCalls++;
+  }
+
+  let lastCall = 0;
+  // Create a new observer
+  observer = new MutationObserver(() => {
+    // Throttle debug calls
+    if (throttleTime === null) {
+      debug();
+      totalCalls++;
+      return;
+    } else {
+      const now = Date.now();
+      if (now - lastCall > throttleTime) {
+        debug();
+        lastCall = now;
+        totalCalls++;
+      }
+    }
+  });
+
+  // Start observing the document for all types of mutations
+  observer.observe(document, {
+    attributes: true,
+    childList: true,
+    subtree: true,
+    characterData: true,
+  });
+
+  // Return a function to stop watching
+  return () => {
+    // Capture one final state if requested
+    if (end) {
+      debug();
+    }
+    if (debugFlag) {
+      console.log('totalCalls', ++totalCalls);
+    }
+
+    if (observer) {
+      observer.disconnect();
+      observer = null;
+    }
+    if (timeout !== null) {
+      clearTimeout(timeout);
+      timeout = null;
+    }
+  };
 }

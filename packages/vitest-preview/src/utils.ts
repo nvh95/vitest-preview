@@ -70,3 +70,7 @@ export function getUrls(host: string, port: number) {
   }
   return { local, network };
 }
+
+export function wait(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
