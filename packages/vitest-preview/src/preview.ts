@@ -71,7 +71,7 @@ export function watch(
   }
 
   // Set up throttling to avoid too many debug() calls
-  const throttleTime = options.throttle ?? 50;
+  const throttleTime = options.throttle === undefined ? 50 : options.throttle;
   const start = options.start ?? true;
   const end = options.end ?? true;
   const debugFlag = options.debug ?? false;
