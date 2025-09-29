@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { CACHE_FOLDER } from './constants';
 import { createCacheFolderIfNeeded, wait } from './utils';
+import { afterEach, beforeEach } from 'vitest';
 
 let observer: MutationObserver | null = null;
 
@@ -45,6 +46,13 @@ export function debug(): void {
   );
 }
 
+interface WatchOptions {
+  throttle?: number | null;
+  start?: boolean;
+  end?: boolean;
+  debug?: boolean;
+}
+
 /**
  * Watches for changes in the document and automatically calls debug() when changes occur.
  * Uses MutationObserver to detect DOM mutations.
@@ -56,14 +64,7 @@ export function debug(): void {
  * @param options.debug - Whether to log the total number of debug calls to the console (default: false)
  * @returns A function to stop watching
  */
-export function watch(
-  options: {
-    throttle?: number | null;
-    start?: boolean;
-    end?: boolean;
-    debug?: boolean;
-  } = {},
-): () => void {
+export function watch(options: WatchOptions = {}): () => void {
   // Stop any existing observer
   if (observer) {
     observer.disconnect();
@@ -128,4 +129,15 @@ export function watch(
       timeout = null;
     }
   };
+}
+
+export function autoPreviewOnDomChanges(options?: WatchOptions) {
+  let stopWatching: (() => void) | null = null;
+  beforeEach(() => {
+    stopWatching = watch(options);
+  });
+
+  afterEach(() => {
+    stopWatching?.();
+  });
 }

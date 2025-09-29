@@ -1,24 +1,13 @@
 import { mount } from '@vue/test-utils';
-import { watch } from 'vitest-preview';
+import { autoPreviewOnDomChanges } from 'vitest-preview';
 import App from './App.vue';
 
 function wait(seconds: number) {
   return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
 }
 
-let stopWatching = null;
-beforeEach(() => {
-  // Use start: true to capture initial state and end: true for final state
-  stopWatching = watch({
-    throttle: 50,
-    start: true,
-    end: true,
-    debug: true,
-  });
-});
-afterEach(() => {
-  stopWatching();
-});
+autoPreviewOnDomChanges();
+
 test('mount component with automatic watching', async () => {
   expect(App).toBeTruthy();
 

@@ -71,5 +71,8 @@
     "@types/node": "^20.19.5",
     "pkgroll": "^2.15.4",
     "vitest": "^3.2.4"
+  },
+  "peerDependencies": {
+    "vitest": "*"
   }
 }

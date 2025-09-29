@@ -112,6 +112,6 @@ Then execute your tests that contain `debug()`. You will see the UI of your test
 
 ## (Optional) Step 4: Automatic Mode
 
-You can use automatic mode to automatically preview the UI of failed tests without manually calling `debug()` in each test.
+You can use automatic mode to automatically preview the UI without manually calling `debug()` in each test.
 
-Read more at [Automatic Mode](/guide/automatic-mode).
+Read more at [What is Automatic Mode?](/guide/what-is-automatic-mode).
