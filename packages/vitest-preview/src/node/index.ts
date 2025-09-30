@@ -18,6 +18,7 @@ import {
   getUrls,
 } from '../utils';
 import { loadConfig } from '../configure';
+import { snapshotHmrPlugin, HMR_CLIENT_VIRTUAL_MODULE_ID } from './snapshotHmrPlugin';
 
 interface ServerOptions {
   open?: boolean;
@@ -61,20 +62,16 @@ async function createServer(
       },
     },
     appType: 'custom',
+    plugins: [
+      snapshotHmrPlugin(snapshotHtmlFile)
+    ],
   });
 
   app.use(vite.middlewares);
 
-  // Watch `snapshotHtmlFile` to trigger reload
+  // Watch `snapshotHtmlFile` for HMR updates
+  // The actual HMR handling is done by the snapshotHmrPlugin
   vite.watcher.add(snapshotHtmlFile);
-
-  ['change', 'add', 'unlink'].forEach((event) => {
-    vite.watcher.on(event, (file) => {
-      if (path.resolve(file) === path.resolve(snapshotHtmlFile)) {
-        vite.ws.send({ type: 'full-reload', path: '/' });
-      }
-    });
-  });
 
   app.get('/', async (req, res, next) => {
     const url = req.originalUrl;
@@ -93,6 +90,12 @@ async function createServer(
         style.textContent = processedCssObj.css;
         document.head.appendChild(style);
       });
+      
+      // Add the HMR client script
+      const hmrScript = document.createElement('script');
+      hmrScript.setAttribute('type', 'module');
+      hmrScript.setAttribute('src', `/@id/${HMR_CLIENT_VIRTUAL_MODULE_ID}`);
+      document.head.appendChild(hmrScript);
 
       template = dom.serialize();
 
