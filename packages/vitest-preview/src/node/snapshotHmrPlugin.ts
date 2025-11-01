@@ -66,6 +66,7 @@ export function snapshotHmrPlugin(snapshotHtmlFile: string): Plugin {
           }
           
           function updateDOM(html) {
+          count++
             // Parse the HTML content
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
@@ -80,35 +81,22 @@ export function snapshotHmrPlugin(snapshotHtmlFile: string): Plugin {
             const styles = doc.head.querySelectorAll('style');
             
             // Remove existing vitest-preview styles
-            document.head.querySelectorAll('style[data-vitest-preview-dev-id]').forEach(el => {
+            document.head.querySelectorAll('style').forEach(el => {
               el.remove();
             });
             
             // Add the new styles
+            // TODO: Cache this if possible.
+            // Idea: add data-vitest-preview-hash to the style tag, by adding a new plugin to process css
             styles.forEach(style => {
               const newStyle = document.createElement('style');
-              if (style.hasAttribute('data-vitest-preview-dev-id')) {
-                newStyle.setAttribute('data-vitest-preview-dev-id', 
-                  style.getAttribute('data-vitest-preview-dev-id') || '');
-              }
+              // Preserve all attributes
+              style.attributes.forEach(attr => {
+                newStyle.setAttribute(attr.name, attr.value);
+              });
               newStyle.textContent = style.textContent;
               document.head.appendChild(newStyle);
             });
-            
-            // Execute any scripts if needed (be careful with this)
-            // This is commented out for safety, uncomment if needed
-            /*
-            const scripts = doc.head.querySelectorAll('script');
-            scripts.forEach(script => {
-              if (script.textContent) {
-                try {
-                  eval(script.textContent);
-                } catch (error) {
-                  console.error('Error executing script:', error);
-                }
-              }
-            });
-            */
             
             console.log('[vitest-preview] HMR update applied');
             console.log('count', window.count)

@@ -6,7 +6,9 @@ function wait(seconds: number) {
   return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
 }
 
-autoPreviewOnDomChanges();
+autoPreviewOnDomChanges({
+  throttle: null,
+});
 
 test('mount component with automatic watching', async () => {
   expect(App).toBeTruthy();
@@ -31,7 +33,6 @@ test('mount component with automatic watching', async () => {
   for (let i = 0; i < 10000; i++) {
     await wrapper.get('button').trigger('click');
   }
-  await wait(1);
 
   expect(wrapper.text()).toContain('4 x 10003 = 40012');
 });
