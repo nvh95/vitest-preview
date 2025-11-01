@@ -59,11 +59,11 @@ export default defineConfig({
     },
 
     // TODO: Wait until Algolia Docsearch request get approved
-    // algolia: {
-    //   appId: 'VFA88CUWX7',
-    //   apiKey: '8354d53c7d31449dc1312e81d441fbf4',
-    //   indexName: 'vitest-preview',
-    // },
+    algolia: {
+      appId: 'BUN7XA5D5V',
+      apiKey: '6a52894da235fe49212c2bc60b9589a3',
+      indexName: 'Vitest Preview',
+    },
   },
   ignoreDeadLinks: 'localhostLinks',
 });
