@@ -32,7 +32,7 @@ describe('Vitest Preview Server', () => {
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <title>Vitest Preview Dashboard</title>
           <script src="https://cdn.tailwindcss.com"></script>
-        </head>
+        <script type="module" src="/@id/virtual:vitest-preview-hmr-client"></script></head>
         <body class="h-full bg-slate-200">
           <div class="p-10 m-auto">
             No previews found.<br>
@@ -77,7 +77,7 @@ describe('Vitest Preview Server', () => {
     expect(html).toMatchInlineSnapshot(`
       "<html><head>
         <script type="module" src="/@vite/client"></script>
-      </head><body><h1>Hello World</h1></body></html>"
+      <script type="module" src="/@id/virtual:vitest-preview-hmr-client"></script></head><body><h1>Hello World</h1></body></html>"
     `);
   });
 });
