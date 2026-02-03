@@ -64,6 +64,10 @@ export default defineConfig({
       apiKey: '6a52894da235fe49212c2bc60b9589a3',
       indexName: 'Vitest Preview',
     },
+    carbonAds: {
+      code: 'CEAIV23U',
+      placement: 'wwwjest-previewcom',
+    },
   },
   ignoreDeadLinks: 'localhostLinks',
 });
@@ -78,6 +82,10 @@ function nav() {
     {
       text: 'Jest Preview',
       link: 'https://www.jest-preview.com/',
+    },
+    {
+      text: 'Perks',
+      link: 'https://app.codecrafters.io/join?via=nvh95',
     },
     {
       text: version,
