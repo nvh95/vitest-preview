@@ -29,6 +29,7 @@
     "build": "rimraf dist && pnpm copy && pkgroll",
     "build:watch": "rimraf dist && pnpm copy && pkgroll --watch",
     "test": "vitest run tests/e2e.test.ts",
+    "test:dev": "vitest tests/e2e.test.ts",
     "prepublishOnly": "pnpm run build",
     "publish:alpha": "pnpm publish --tag alpha",
     "publish:latest": "pnpm publish"

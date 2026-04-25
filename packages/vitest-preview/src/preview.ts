@@ -77,7 +77,7 @@ export function watch(options: WatchOptions = {}): () => void {
   const end = options.end ?? true;
   const debugFlag = options.debug ?? false;
   let timeout: ReturnType<typeof setTimeout> | null = null;
-
+  console.log('throttleTime', throttleTime);
   let totalCalls = 0;
   if (start) {
     debug();
