@@ -49,6 +49,7 @@ async function createServer(
 
   const httpServer = http.createServer(app);
   const vite = await createViteServer({
+    configFile: false,
     server: {
       middlewareMode: true,
       host: '0.0.0.0',
